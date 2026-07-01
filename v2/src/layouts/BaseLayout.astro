@@ -24,9 +24,12 @@ const {
 
 const fullTitle = title === "Samostuduj" ? title : `${title} — Samostuduj`;
 
-// Absolute URLs — OG/Twitter scrapers require them. Astro.site is set in astro.config.
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const ogImage = new URL(image, Astro.site).href;
+// Absolute URLs — OG/Twitter scrapers require them. In production `Astro.site`
+// (set in astro.config) supplies the canonical origin; the dev server leaves it
+// undefined, so fall back to the request origin there.
+const origin = Astro.site ?? new URL(Astro.url).origin;
+const canonical = new URL(Astro.url.pathname, origin).href;
+const ogImage = new URL(image, origin).href;
 ---
 
 <!doctype html>
