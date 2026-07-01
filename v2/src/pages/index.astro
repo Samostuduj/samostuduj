@@ -27,12 +27,12 @@ const dateFmt = new Intl.DateTimeFormat("cs-CZ", { dateStyle: "long" });
       Učení není pro každého stejné.<br />
       <span class="text-accent">Uč se po svém.</span>
     </h1>
-    <p class="mt-6 max-w-2xl text-lg text-muted">
+    <p class="mt-6 max-w-2xl text-lg text-fg">
       Ze školy sis odnesl(a) spíš pachuť než motivaci? Možná to jen chce jiný
       přístup. <em>Samostuduj</em> je projekt pro lidi, kteří se chtějí vzdělávat
       stejně důkladně jako na vysoké škole — ale po svém.
     </p>
-    <div class="mt-8 flex flex-wrap gap-3">
+    <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
       <a
         href="/plany"
         class="rounded-lg bg-accent px-5 py-3 font-medium text-accent-contrast transition hover:opacity-90"
@@ -41,25 +41,64 @@ const dateFmt = new Intl.DateTimeFormat("cs-CZ", { dateStyle: "long" });
       </a>
       <a
         href="/blog"
-        class="rounded-lg border border-border px-5 py-3 font-medium transition hover:text-accent"
+        class="font-medium text-muted transition hover:text-accent"
       >
-        Číst blog
+        Číst blog →
       </a>
     </div>
+  </section>
+
+  <!-- Jak to funguje -->
+  <section class="mx-auto max-w-5xl px-4 py-12 md:px-6">
+    <h2 class="text-2xl font-bold">Jak to funguje</h2>
+    <p class="mt-4 max-w-2xl leading-relaxed text-muted">
+      Vysokou školu nedělá budova ani diplom — dělá ji obsah: v jakém pořadí
+      věci procházíš a z čeho se učíš. Obojí tu najdeš. Studijní plány tě
+      provedou oborem od úvodu po magisterskou úroveň, z kvalitních veřejně
+      dostupných zdrojů — zadarmo, vlastním tempem a bez žádných
+      zbytečných závazků.
+    </p>
+
+    <dl class="mt-8 max-w-2xl border-y border-border">
+      <div class="grid gap-1 border-t border-border py-4 first:border-t-0 sm:grid-cols-[9rem_1fr] sm:gap-6">
+        <dt>
+          <a href="/obory" class="font-semibold text-accent hover:underline">obory</a>
+        </dt>
+        <dd class="text-muted">
+          Rozcestník oborem — kde začít a co číst dál, od úvodu po doporučené materiály.
+        </dd>
+      </div>
+      <div class="grid gap-1 border-t border-border py-4 first:border-t-0 sm:grid-cols-[9rem_1fr] sm:gap-6">
+        <dt>
+          <a href="/plany" class="font-semibold text-accent hover:underline">studijní plány</a>
+        </dt>
+        <dd class="text-muted">
+          Osnova, která tě provede oborem krok za krokem. Jako univerzitní sylabus, ale svobodný a zdarma.
+        </dd>
+      </div>
+      <div class="grid gap-1 border-t border-border py-4 first:border-t-0 sm:grid-cols-[9rem_1fr] sm:gap-6">
+        <dt>
+          <a href="/manifest" class="font-semibold text-accent hover:underline">manifest</a>
+        </dt>
+        <dd class="text-muted">
+          Proč to děláme a na čem projekt stojí — principy, ke kterým se hlásíme.
+        </dd>
+      </div>
+    </dl>
   </section>
 
   <!-- Pro koho -->
   <section class="mx-auto max-w-5xl px-4 py-12 md:px-6">
     <h2 class="text-2xl font-bold">Pro koho samostudium je?</h2>
-    <div class="mt-6 grid gap-4 sm:grid-cols-2">
+    <div class="mt-10 grid gap-x-12 gap-y-12 sm:grid-cols-2">
       {
         audience.map((a) => (
-          <div class="rounded-xl border border-border bg-surface p-5">
-            <span class="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent">
-              <Icon name={a.icon} size={22} />
+          <div class="grid grid-cols-[auto_1fr] items-start gap-x-5">
+            <span class="row-span-2 inline-flex h-14 w-14 items-center justify-center self-center rounded-xl bg-black/25">
+              <Icon name={a.icon} size={30} class="text-accent" />
             </span>
-            <h3 class="mt-3 font-semibold">{a.title}</h3>
-            <p class="mt-1 text-sm text-muted">{a.text}</p>
+            <h3 class="font-semibold">{a.title}</h3>
+            <p class="col-start-2 mt-1 text-sm leading-relaxed text-muted">{a.text}</p>
           </div>
         ))
       }
@@ -89,5 +128,23 @@ const dateFmt = new Intl.DateTimeFormat("cs-CZ", { dateStyle: "long" });
         ))
       }
     </ul>
+  </section>
+
+  <!-- Kde začít -->
+  <section class="mx-auto max-w-5xl px-4 pb-24 pt-8 md:px-6">
+    <div class="rounded-2xl border border-border bg-surface p-8 md:flex md:items-center md:justify-between md:gap-8 md:p-10">
+      <div>
+        <h2 class="text-2xl font-bold">Kde začít?</h2>
+        <p class="mt-2 max-w-xl text-muted">
+          Vyber si studijní plán a projdi obor krok za krokem — vlastním tempem a zadarmo.
+        </p>
+      </div>
+      <a
+        href="/plany"
+        class="mt-6 inline-block shrink-0 rounded-lg bg-accent px-5 py-3 font-medium text-accent-contrast transition hover:opacity-90 md:mt-0"
+      >
+        Prozkoumat studijní plány
+      </a>
+    </div>
   </section>
 </BaseLayout>
