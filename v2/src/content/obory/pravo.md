@@ -4,7 +4,6 @@ summary: "Systém závazných pravidel upravujících společenské vztahy, jeho
 icon: "scale"
 order: 4
 status: "planovano"
-ai: false
 tags: []
 ---
 

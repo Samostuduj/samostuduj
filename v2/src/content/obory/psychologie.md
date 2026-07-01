@@ -4,7 +4,6 @@ summary: "Věda zkoumající myšlení, chování a emoce lidí pomocí teorií 
 icon: "brain"
 order: 1
 status: "hotovo"
-ai: true
 tags: ["Psychologie"]
 ---
 

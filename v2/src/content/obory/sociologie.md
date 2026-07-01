@@ -4,7 +4,6 @@ summary: "Věda zkoumající lidskou společnost, sociální skupiny, instituce 
 icon: "users"
 order: 5
 status: "planovano"
-ai: false
 tags: []
 ---
 

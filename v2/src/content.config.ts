@@ -28,7 +28,6 @@ const obory = defineCollection({
     icon: z.string(),
     order: z.number().default(99),
     status,
-    ai: z.boolean().default(false), // show the "AI byla použita" notice
     tags: z.array(z.string()).default([]),
   }),
 });

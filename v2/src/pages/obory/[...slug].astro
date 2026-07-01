@@ -26,11 +26,6 @@ const { Content } = await render(entry);
         <StatusBadge status={entry.data.status} />
       </div>
     </header>
-    {entry.data.ai && (
-      <div class="mt-6 rounded-lg border border-border bg-surface px-4 py-3 text-sm text-muted">
-        Při tvorbě tohoto obsahu byla použita umělá inteligence (AI).
-      </div>
-    )}
     <div class="prose mt-8">
       <Content />
     </div>

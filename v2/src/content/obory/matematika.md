@@ -4,7 +4,6 @@ summary: "Věda o číslech, prostoru a strukturách, která tvoří základ exa
 icon: "sigma"
 order: 6
 status: "planovano"
-ai: false
 tags: []
 ---
 

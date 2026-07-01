@@ -4,7 +4,6 @@ summary: "Obor zahrnující vývoj softwaru, počítačové systémy, kybernetic
 icon: "terminal"
 order: 2
 status: "planovano"
-ai: false
 tags: []
 ---
 

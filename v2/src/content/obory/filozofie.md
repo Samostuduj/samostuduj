@@ -4,7 +4,6 @@ summary: "Disciplína kladoucí základní otázky o existenci, poznání, hodno
 icon: "feather"
 order: 7
 status: "planovano"
-ai: false
 tags: []
 ---
 
