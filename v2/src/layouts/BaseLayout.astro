@@ -6,14 +6,27 @@ import Footer from "../components/Footer.astro";
 interface Props {
   title?: string;
   description?: string;
+  /** Social share image, resolved against the site origin. */
+  image?: string;
+  /** Open Graph type — "article" for blog posts, "website" elsewhere. */
+  ogType?: "website" | "article";
+  /** Publication date for articles (emits article:published_time). */
+  publishedTime?: Date;
 }
 
 const {
   title = "Samostuduj",
   description = "Vzdělávej se důkladně jako na vysoké škole — ale po svém. Materiály, studijní plány a komunita pro samouky.",
+  image = "/og-default.png",
+  ogType = "website",
+  publishedTime,
 } = Astro.props;
 
 const fullTitle = title === "Samostuduj" ? title : `${title} — Samostuduj`;
+
+// Absolute URLs — OG/Twitter scrapers require them. Astro.site is set in astro.config.
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(image, Astro.site).href;
 ---
 
 <!doctype html>
@@ -22,16 +35,44 @@ const fullTitle = title === "Samostuduj" ? title : `${title} — Samostuduj`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Samostuduj" />
+    <meta property="og:locale" content="cs_CZ" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <!-- Set theme before paint to avoid a flash of the wrong mode -->
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Samostuduj — uč se po svém" />
+    {publishedTime && (
+      <meta property="article:published_time" content={publishedTime.toISOString()} />
+    )}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <!-- Set theme before paint to avoid a flash of the wrong mode. Always
+         resolve an explicit .dark/.light class so class-based tokens and
+         `dark:` utilities stay in sync (saved choice wins, else OS preference). -->
     <script is:inline>
       const t = localStorage.getItem("samostuduj-theme");
-      if (t === "dark" || t === "light")
-        document.documentElement.classList.add(t);
+      const dark =
+        t === "dark" ||
+        (t !== "light" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches);
+      document.documentElement.classList.add(dark ? "dark" : "light");
     </script>
   </head>
   <body class="flex min-h-screen flex-col">
