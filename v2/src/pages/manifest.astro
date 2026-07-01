@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const principles = [
+  {
+    term: "Voluntarismus",
+    desc: "Vzájemné interakce by měly být dobrovolné, nikdo by neměl být k ničemu nucen proti jeho vůli, aniž by se k tomu předem nezavázal.",
+  },
+  {
+    term: "Absence duševního vlastnictví",
+    desc: "Duševní vlastnictví vnímáme jako neslučitelné se svobodou, a proto ho nepodporujeme. Všechny naše materiály jsou volnými díly, stejně tak i naše codebase. To ale neznamená, že nebudeme respektovat duševní vlastnictví ostatních.",
+  },
+  {
+    term: "Preference svobodných peněz",
+    desc: "Vždy preferujeme svobodné peníze (Bitcoin, Monero, Z-Cash atd.) před těmi nucenými (české koruny, dolary).",
+  },
+  {
+    term: "Zachováváme soukromí",
+    desc: "Používáme jednoduché technologie, které respektují soukromí. Nepotřebujeme žádné blištivé aplikace, které slouží jako honeypot. Sbíráme minimum dat, která jsou potřeba pro fungování.",
+  },
+  {
+    term: "Decentralizace",
+    desc: `Neexistuje jediné „správné” Samostuduj, každý si může založit svou vlastní odnož, pokud není s momentální cestou spokojený.`,
+  },
+  {
+    term: "Spolupráce",
+    desc: "(Skoro) nikdo nedokáže vybudovat něco velkého sám, spolupráce je tedy klíčová. Navíc zachovává diverzitu, a tím podporuje inovace.",
+  },
+];
+---
+
+<BaseLayout title="Manifest" description="Principy a hodnoty, na kterých stojí projekt Samostuduj.">
+  <section class="mx-auto max-w-3xl px-4 py-16 md:px-6">
+    <h1 class="text-3xl font-bold tracking-tight md:text-4xl">Manifest</h1>
+    <p class="mt-3 text-muted">V Samostuduj zastáváme následující principy:</p>
+
+    <div class="mt-10 space-y-4">
+      {
+        principles.map((p) => (
+          <div class="rounded-xl border border-border bg-surface p-5">
+            <p class="font-semibold text-fg">{p.term}</p>
+            <p class="mt-1 text-sm text-muted">{p.desc}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const qas = [
+  {
+    q: "Co je cílem Samostuduj?",
+    a: `Cílem projektu je zvyšovat povědomí o možnostech samostudia jako plnohodnotné formy vzdělávání. Snaží se odbourat stigma, že samostudium je méněcenné nebo „druhá volba". Zároveň si neklade za cíl odrazovat od studia na vysoké škole – samostudium by měl být doplněk nebo alternativa k formálnímu vzdělávání, která může být pro některé lidi vhodnější.`,
+    html: false,
+  },
+  {
+    q: "Pro koho je Samostuduj určeno?",
+    a: `Ve zkratce: <strong>Pro všechny.</strong><br />Specifičtěji: Pro ty, kteří se chtějí vzdělávat mimo formální systém – a to z jakéhokoliv důvodu. Třeba pokud ještě nevědí, co by chtěli dělat, nemají dostatek času, nebo jim vadí vzdělávací systém samotný.`,
+    html: true,
+  },
+  {
+    q: `Co znamená „samostudium" v kontextu Samostuduj?`,
+    a: `<strong>Cokoliv.</strong> Samostudium si totiž každý určuje sám – co, kdy, jak a proč se chce učit. <em>Samostuduj</em> nenabízí univerzální recept na úspěch. Místo toho poskytuje prostředky, inspiraci a nástroje k tomu, aby si každý mohl vytvořit vlastní cestu. Je to flexibilní forma učení, která se přizpůsobuje tobě – ne naopak.`,
+    html: true,
+  },
+  {
+    q: "Proč bych měl(a) studovat sám/sama, když existují školy a kurzy?",
+    a: "Samostudium, na rozdíl od formálního vzdělávání, poskytuje největší míru svobody. Můžeš kdykoliv začít, vzít si pauzu, nebo i samozřejmě skončit, a to bez přijímaček nebo dalšího papírování. Nikdo ti nediktuje co, kdy, kde nebo z čeho se máš učit. Jestli zvládneš látku za týden, nebo čtvrt roku, je jen tvoje věc. Ani nemusíš psát žádné testy, pokud nechceš (i když si myslím, že s tím stejně časem začneš). Samostudium se ale nutně nevylučuje se školou nebo kurzy, které taky mají své výhody, takže je můžeš šikovně kombinovat tak, aby ti vyhovovali.",
+    html: false,
+  },
+  {
+    q: `Není samostudium jen pro „motivované" nebo „chytré" lidi?`,
+    a: `<strong>Ani náhodou.</strong> Je <strong>opravdu</strong> pro každého. Nálepky jako „motivovaný" nebo „chytrý" nemají ve vzdělávání co dělat. Každý má svou vlastní cestu a představu o tom, co chce vědět a umět. A i když se to někomu může zdát nedostatečné, neměl by svůj pohled druhým vnucovat. Tady držíš všechny karty ty, a je jen na tobě, jak je zahraješ.`,
+    html: true,
+  },
+  {
+    q: "Má samostudium vůbec váhu u zaměstnavatelů?",
+    a: "Váhu mají znalosti a dovednosti, ne titul nebo certifikát. To si spoustu zaměstnavatelů začíná uvědomovat a dávají šanci i lidem, kteří tyto potvrzení nemají. Každý obor to má jinak, ale trend je jasný – jde o to, co umíš.",
+    html: false,
+  },
+  {
+    q: "Kdo za projektem Samostuduj stojí a proč mu mám důvěřovat?",
+    a: `Zatím za ním stojím jen já, <a href="https://nktrjsk.cz/" class="text-accent hover:underline">Nikita</a>. Nejlepší je, že mi vlastně důvěřovat nemusíš. Projekt nemá v zájmu držet nikoho pod zámkem a je závislý jen na dobrovolných příspěvcích. Stránka má otevřený kód a její obsah je dostupný pod Creative Commons CC-BY-SA 4.0 licencí, takže si třeba i ty můžeš vytvořit vlastní verzi, pokud se ti směřování projektu nelíbí – což je v pohodě, každý má rád něco jiného. Samozřejmě ale budu moc ráda, pokud se zapojíš a pomůžeš projekt zlepšovat.`,
+    html: true,
+  },
+];
+---
+
+<BaseLayout title="Časté dotazy" description="Odpovědi na nejčastější otázky o projektu Samostuduj a samostudiu obecně.">
+  <section class="mx-auto max-w-3xl px-4 py-16 md:px-6">
+    <h1 class="text-3xl font-bold tracking-tight md:text-4xl">Časté dotazy</h1>
+    <p class="mt-3 text-muted">Obecné dotazy</p>
+
+    <div class="mt-10">
+      {
+        qas.map((qa) => (
+          <details class="group border-b border-border py-4">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-medium hover:text-accent">
+              {qa.q}
+              <span class="transition group-open:rotate-180" aria-hidden="true">▾</span>
+            </summary>
+            <div class="prose mt-3 text-muted">
+              {qa.html ? <p set:html={qa.a} /> : <p>{qa.a}</p>}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

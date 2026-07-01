@@ -1,0 +1,31 @@
+---
+// Small pill communicating how finished a piece of content is.
+// Values match the `status` enum in content.config.ts.
+interface Props {
+  status: "hotovo" | "rozpracovano" | "planovano";
+  class?: string;
+}
+
+const labels = {
+  hotovo: "Hotovo",
+  rozpracovano: "Rozpracováno",
+  planovano: "Připravujeme",
+} as const;
+
+const styles = {
+  hotovo: "border-accent/40 bg-accent/10 text-accent",
+  rozpracovano: "border-border bg-surface text-fg",
+  planovano: "border-border text-muted",
+} as const;
+
+const { status, class: className } = Astro.props;
+---
+
+<span
+  class={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium ${styles[status]} ${className ?? ""}`}
+>
+  {status === "rozpracovano" && (
+    <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+  )}
+  {labels[status]}
+</span>

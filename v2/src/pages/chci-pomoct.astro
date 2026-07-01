@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+---
+
+<BaseLayout title="Chci pomoct" description="Zapoj se do rozvoje projektu Samostuduj — tvůrci obsahu, grafici, programátoři i nadšenci vítáni.">
+  <section class="mx-auto max-w-3xl px-4 py-16 md:px-6">
+    <h1 class="text-3xl font-bold tracking-tight md:text-4xl">Chci pomoct</h1>
+
+    <!-- Accent callout -->
+    <div class="mt-8 rounded-xl border border-border bg-surface p-5 flex gap-4 items-start">
+      <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent">
+        <Icon name="heart-handshake" size={22} />
+      </span>
+      <p class="text-muted leading-relaxed">
+        Máš zájem zapojit se? Ozvi se nám přes{" "}
+        <a href="/kontakt" class="text-accent hover:underline">kontakt</a>{" "}
+        — každá pomoc je vítaná!
+      </p>
+    </div>
+
+    <p class="mt-8 text-muted leading-relaxed">
+      Moc mě těší, že máš zájem pomoci rozvíjet projekt Samostuduj. Pokud můžeš přispět v některé z níže uvedených
+      oblastí, nebo pokud znáš někoho, kdo by mohl mít zájem a schopnosti nám pomoci, neváhej se ozvat na některém z
+      uvedených{" "}
+      <a href="/kontakt" class="text-accent hover:underline">kontaktů</a>. Před sdílením kontaktu jiné osoby se ale
+      ujisti, že s tím daná osoba souhlasí.
+    </p>
+
+    <h2 class="text-xl font-semibold mt-12 mb-4">Obecné</h2>
+    <ul class="mt-3 space-y-1 text-muted list-disc pl-5">
+      <li>Šíření povědomí o projektu mezi rodinou, přáteli, známými, na sociálních sítích</li>
+      <li>Podělení se o vlastní příběh, pokud jste úspěšný, ale i neúspěšný samouk, nebo třeba učitel (a pokud nejsi ani jedno, ale myslíš si, že máš relevantní zkušenosti, ozvi se taky)</li>
+      <li>Zodpovězení otázek o přístupu k učení apod.</li>
+    </ul>
+
+    <h2 class="text-xl font-semibold mt-12 mb-4">Tvorba obsahu</h2>
+    <ul class="mt-3 space-y-1 text-muted list-disc pl-5">
+      <li>Tvoření studijních plánů</li>
+      <li>Psaní informací k oborům</li>
+      <li>Psaní článků v blogu</li>
+      <li>Tvorba obsahu na soc. sítě</li>
+      <li>Jazyková korektura</li>
+      <li>Odborné recenze</li>
+    </ul>
+
+    <h2 class="text-xl font-semibold mt-12 mb-4">Grafika, design, UI/UX</h2>
+    <ul class="mt-3 space-y-1 text-muted list-disc pl-5">
+      <li>Vytvoření loga</li>
+      <li>Zlepšení designu a UI/UX stránky</li>
+      <li>Tvorba infografiky</li>
+    </ul>
+
+    <h2 class="text-xl font-semibold mt-12 mb-4">Ostatní</h2>
+    <ul class="mt-3 space-y-1 text-muted list-disc pl-5">
+      <li>Právní služby</li>
+      <li>Jiné konzultace</li>
+      <li>Marketing</li>
+      <li>Nenašel/nenašla ses, ale i tak chceš pomoct? Nevadí, ozvi se taky a něco vymyslíme.</li>
+    </ul>
+
+    <hr class="my-12 border-border" />
+
+    <h2 class="text-xl font-semibold mt-0 mb-4">Studijní plány, přehled oboru</h2>
+    <ul class="mt-3 space-y-1 text-muted list-disc pl-5">
+      <li>Ekonomie (úvod, bakalář, magistr)</li>
+      <li>
+        Informační technologie — a její podobory
+        <ul class="mt-1 space-y-1 list-disc pl-5">
+          <li>Kyberbezpečnost</li>
+          <li>Vývoj softwaru</li>
+          <li>atd.</li>
+        </ul>
+      </li>
+      <li>Právo</li>
+      <li>Filozofie</li>
+      <li>Lékařství</li>
+      <li>Sociologie</li>
+      <li>Chemie</li>
+      <li>Matematika</li>
+      <li>Inženýrství</li>
+      <li>atd.</li>
+    </ul>
+
+    <h3 class="text-lg font-semibold mt-8 mb-3">Jazyky</h3>
+    <ul class="mt-3 space-y-1 text-muted list-disc pl-5">
+      <li>Japonština</li>
+      <li>Němčina</li>
+      <li>Angličtina</li>
+      <li>atd.</li>
+    </ul>
+  </section>
+</BaseLayout>
