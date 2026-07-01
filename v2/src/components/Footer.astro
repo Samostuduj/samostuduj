@@ -1,0 +1,50 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-border">
+  <div
+    class="mx-auto grid max-w-5xl gap-8 px-4 py-12 md:grid-cols-3 md:px-6"
+  >
+    <div>
+      <div class="flex items-center gap-2">
+        <img src="/img/samostuduj_icon_black.svg" alt="" width="28" height="28" class="h-7 w-7 dark:hidden" />
+        <img src="/img/samostuduj_icon_white.svg" alt="" width="28" height="28" class="hidden h-7 w-7 dark:block" />
+        <span class="font-bold">samostuduj</span>
+      </div>
+      <p class="mt-3 max-w-xs text-sm text-muted">
+        Vzdělávej se důkladně jako na vysoké škole — ale po svém, vlastním
+        tempem a zdarma.
+      </p>
+    </div>
+
+    <nav aria-label="Patička" class="text-sm">
+      <p class="mb-2 text-xs uppercase tracking-wide text-muted">Projekt</p>
+      <ul class="space-y-1">
+        <li><a href="/o-projektu" class="hover:text-accent">O projektu</a></li>
+        <li><a href="/chci-pomoct" class="hover:text-accent">Chci pomoct</a></li>
+        <li><a href="/faq" class="hover:text-accent">FAQ</a></li>
+        <li><a href="/kontakt" class="hover:text-accent">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <div class="text-sm">
+      <p class="mb-2 text-xs uppercase tracking-wide text-muted">Licence</p>
+      <p class="text-muted">
+        Zdrojový kód:
+        <a
+          href="https://creativecommons.org/publicdomain/zero/1.0/"
+          class="text-accent hover:underline">CC0</a
+        >
+      </p>
+      <p class="text-muted">
+        Obsah:
+        <a
+          href="https://creativecommons.org/licenses/by-sa/4.0/"
+          class="text-accent hover:underline">CC BY-SA 4.0</a
+        >
+      </p>
+      <p class="mt-4 text-muted">© {year} Samostuduj</p>
+    </div>
+  </div>
+</footer>

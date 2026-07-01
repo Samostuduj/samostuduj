@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const dateFmt = new Intl.DateTimeFormat("cs-CZ", { dateStyle: "long" });
+---
+
+<BaseLayout title={post.data.title} description={post.data.summary}>
+  <article class="mx-auto max-w-2xl px-4 py-16 md:px-6">
+    <a href="/blog" class="text-sm text-accent hover:underline">← Zpět na blog</a>
+    <header class="mt-6">
+      <h1 class="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
+        {post.data.title}
+      </h1>
+      <p class="mt-3 text-sm text-muted">
+        <time datetime={post.data.date.toISOString()}>
+          {dateFmt.format(post.data.date)}
+        </time>
+        · {post.data.author}
+      </p>
+    </header>
+    <div class="prose mt-8">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

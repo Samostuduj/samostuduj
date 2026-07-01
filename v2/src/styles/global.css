@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Brand fonts — Source Code Pro (from the samostuduj brand kit)
+--------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("/fonts/SourceCodePro-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("/fonts/SourceCodePro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("/fonts/SourceCodePro-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("/fonts/SourceCodePro-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("/fonts/SourceCodePro-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* ---------------------------------------------------------------------------
+   Semantic theme tokens — light is default, dark follows OS or an explicit
+   .dark / .light class on <html>. These are the single source of truth; the
+   Tailwind @theme block below just exposes them as utilities (bg-bg, text-fg…).
+--------------------------------------------------------------------------- */
+:root {
+  --bg: #fafafa;
+  --surface: #f1f1ee;
+  --fg: #212121;
+  --muted: #5f5f5f;
+  --border: #e2e2dc;
+  /* Brand accent — indigo/purple from the kit. TODO: sample the exact hex
+     from samostuduj_logo_CZ.pdf annotations and replace these placeholders. */
+  --accent: #5a4bd8;
+  --accent-contrast: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --bg: #121212;
+    --surface: #1c1c1c;
+    --fg: #e0e0e0;
+    --muted: #9a9a9a;
+    --border: #2c2c2c;
+    --accent: #b3a7f5;
+    --accent-contrast: #16131f;
+  }
+}
+
+.dark {
+  --bg: #121212;
+  --surface: #1c1c1c;
+  --fg: #e0e0e0;
+  --muted: #9a9a9a;
+  --border: #2c2c2c;
+  --accent: #b3a7f5;
+  --accent-contrast: #16131f;
+}
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+  --font-mono: "Source Code Pro", ui-monospace, "SFMono-Regular", monospace;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+html {
+  font-family: var(--font-mono);
+  color-scheme: light dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  /* Subtle paper texture — a light motif carried from the print collateral. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+}
+
+/* Long-form prose defaults for Markdown content */
+.prose {
+  line-height: 1.7;
+}
+.prose h1,
+.prose h2,
+.prose h3 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 2rem 0 0.75rem;
+}
+.prose h1 { font-size: 1.9rem; }
+.prose h2 { font-size: 1.45rem; }
+.prose h3 { font-size: 1.2rem; }
+.prose p,
+.prose li { margin: 0.75rem 0; }
+.prose ul { list-style: disc; padding-left: 1.5rem; }
+.prose a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+  text-decoration: underline;
+}
+.prose blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}

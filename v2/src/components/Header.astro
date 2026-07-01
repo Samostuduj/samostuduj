@@ -1,0 +1,162 @@
+---
+// Primary navigation — implements the grouped IA from issue #7.
+// Dropdowns use <details> so they work without JS.
+import Icon from "./Icon.astro";
+
+const nav = [
+  {
+    label: "Obory",
+    children: [
+      { label: "Psychologie", href: "/obory/psychologie" },
+      { label: "IT", href: "/obory/it" },
+      { label: "Ekonomie", href: "/obory/ekonomie" },
+      { label: "Právo", href: "/obory/pravo" },
+      { label: "Sociologie", href: "/obory/sociologie" },
+      { label: "Matematika", href: "/obory/matematika" },
+      { label: "Filozofie", href: "/obory/filozofie" },
+    ],
+  },
+  { label: "Studijní plány", href: "/plany" },
+  { label: "Blog", href: "/blog" },
+  { label: "Letáky", href: "/letaky" },
+  {
+    label: "O Samostuduj",
+    children: [
+      { label: "Chci pomoct", href: "/chci-pomoct" },
+      { label: "FAQ", href: "/faq" },
+      { label: "O projektu", href: "/o-projektu" },
+      { label: "Kontakt", href: "/kontakt" },
+    ],
+  },
+];
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-border bg-bg/85 backdrop-blur-sm"
+>
+  <div
+    class="mx-auto flex max-w-5xl items-center gap-4 px-4 py-3 md:px-6"
+  >
+    <a href="/" class="flex items-center gap-2 shrink-0" aria-label="Samostuduj — domů">
+      <img
+        src="/img/samostuduj_icon_black.svg"
+        alt=""
+        width="32"
+        height="32"
+        class="h-8 w-8 dark:hidden"
+      />
+      <img
+        src="/img/samostuduj_icon_white.svg"
+        alt=""
+        width="32"
+        height="32"
+        class="hidden h-8 w-8 dark:block"
+      />
+      <span class="text-lg font-bold tracking-tight">samostuduj</span>
+    </a>
+
+    <nav class="ml-auto hidden items-center gap-1 md:flex" aria-label="Hlavní">
+      {
+        nav.map((item) =>
+          item.children ? (
+            <details class="group relative">
+              <summary class="flex cursor-pointer list-none items-center gap-1 rounded-md px-3 py-2 text-sm font-medium hover:text-accent">
+                {item.label}
+                <span class="transition group-open:rotate-180" aria-hidden="true">▾</span>
+              </summary>
+              <ul
+                class="absolute right-0 mt-1 min-w-44 rounded-lg border border-border bg-surface p-1 shadow-lg"
+              >
+                {item.children.map((c) => (
+                  <li>
+                    <a
+                      href={c.href}
+                      class="block rounded-md px-3 py-2 text-sm hover:bg-bg hover:text-accent"
+                    >
+                      {c.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ) : (
+            <a
+              href={item.href}
+              class="rounded-md px-3 py-2 text-sm font-medium hover:text-accent"
+            >
+              {item.label}
+            </a>
+          )
+        )
+      }
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label="Přepnout světlý/tmavý režim"
+        class="ml-1 flex items-center rounded-md border border-border px-2 py-2 hover:text-accent"
+      >
+        <span class="dark:hidden"><Icon name="moon" size={18} /></span>
+        <span class="hidden dark:inline"><Icon name="sun" size={18} /></span>
+      </button>
+    </nav>
+
+    <!-- Mobile: collapsible menu -->
+    <details class="ml-auto md:hidden">
+      <summary
+        class="flex cursor-pointer list-none items-center rounded-md border border-border px-3 py-2 text-sm"
+        aria-label="Menu"
+      >
+        ☰
+      </summary>
+      <div
+        class="absolute left-0 right-0 mt-3 border-y border-border bg-surface px-4 py-3"
+      >
+        <ul class="space-y-1">
+          {
+            nav.map((item) => (
+              <li>
+                {item.href ? (
+                  <a href={item.href} class="block rounded-md px-2 py-2 font-medium hover:text-accent">
+                    {item.label}
+                  </a>
+                ) : (
+                  <>
+                    <p class="px-2 pt-2 text-xs uppercase tracking-wide text-muted">{item.label}</p>
+                    <ul>
+                      {item.children?.map((c) => (
+                        <li>
+                          <a href={c.href} class="block rounded-md px-4 py-2 text-sm hover:text-accent">
+                            {c.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </details>
+  </div>
+</header>
+
+<script>
+  // Theme toggle — persists choice, defaults to OS preference.
+  const KEY = "samostuduj-theme";
+  const root = document.documentElement;
+  const saved = localStorage.getItem(KEY);
+  if (saved === "dark" || saved === "light") root.classList.add(saved);
+
+  document.getElementById("theme-toggle")?.addEventListener("click", () => {
+    const isDark =
+      root.classList.contains("dark") ||
+      (!root.classList.contains("light") &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches);
+    root.classList.remove("dark", "light");
+    const next = isDark ? "light" : "dark";
+    root.classList.add(next);
+    localStorage.setItem(KEY, next);
+  });
+</script>
