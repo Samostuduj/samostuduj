@@ -1,6 +1,7 @@
 ---
 title: "Ekonomie"
 summary: "Věda zkoumající hospodaření s omezenými zdroji a principy lidského rozhodování v každodenním životě i na trzích."
+about: "Ekonomie zkoumá, jak lidé a společnosti hospodaří s omezenými zdroji a jak se rozhodují, když si nemůžou dovolit všechno naráz. Nejde jen o peníze a trhy — stejné principy popisují i to, jak trávíš čas nebo čemu dáš přednost. Ekonomie přitom neříká, co bys měl chtít; ukazuje, k jakým důsledkům různé volby vedou."
 icon: "trending-up"
 order: 3
 status: "rozpracovano"

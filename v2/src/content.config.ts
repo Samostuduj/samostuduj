@@ -28,6 +28,9 @@ const obory = defineCollection({
     icon: z.string(),
     order: z.number().default(99),
     status,
+    // Fuller, on-page description of the field — the /obory index leads with
+    // this. Falls back to `summary` (the short SEO blurb) when absent.
+    about: z.string().optional(),
     tags: z.array(z.string()).default([]),
   }),
 });

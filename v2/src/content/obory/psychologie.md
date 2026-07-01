@@ -1,6 +1,7 @@
 ---
 title: "Psychologie"
 summary: "Věda zkoumající myšlení, chování a emoce lidí pomocí teorií a výzkumných metod."
+about: "Psychologie zkoumá, jak lidé myslí, cítí a jednají — od základních procesů vnímání a paměti až po osobnost, motivaci a vztahy mezi lidmi. Opírá se přitom o výzkumné metody jako experimenty, pozorování a dotazníky, takže její závěry nejsou dojmy, ale ověřená zjištění."
 icon: "brain"
 order: 1
 status: "hotovo"
