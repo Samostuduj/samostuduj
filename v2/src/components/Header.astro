@@ -6,6 +6,7 @@ import Icon from "./Icon.astro";
 const nav = [
   {
     label: "Obory",
+    href: "/obory",
     children: [
       { label: "Psychologie", href: "/obory/psychologie" },
       { label: "IT", href: "/obory/it" },
@@ -71,35 +72,58 @@ const isGroupActive = (children?: { href: string }[]) =>
       {
         nav.map((item) =>
           item.children ? (
-            <details class="group relative">
-              <summary
-                class:list={[
-                  "flex cursor-pointer list-none items-center gap-1 rounded-md px-3 py-2 text-sm font-medium hover:text-accent",
-                  isGroupActive(item.children) && "text-accent",
-                ]}
+            // Hover/focus-reveal group. The trigger is a real link when the
+            // group has an index page (Obory → /obory) so it's clickable;
+            // otherwise a plain button that just discloses the menu.
+            <div class="group relative">
+              {item.href ? (
+                <a
+                  href={item.href}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                  class:list={[
+                    "flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium hover:text-accent",
+                    (isGroupActive(item.children) || isActive(item.href)) && "text-accent",
+                  ]}
+                >
+                  {item.label}
+                  <span class="transition group-hover:rotate-180 group-focus-within:rotate-180" aria-hidden="true">▾</span>
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  aria-haspopup="true"
+                  class:list={[
+                    "flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium hover:text-accent",
+                    isGroupActive(item.children) && "text-accent",
+                  ]}
+                >
+                  {item.label}
+                  <span class="transition group-hover:rotate-180 group-focus-within:rotate-180" aria-hidden="true">▾</span>
+                </button>
+              )}
+              {/* pt-2 is a transparent hover bridge so the menu doesn't close
+                  in the gap between the trigger and the list. */}
+              <div
+                class="invisible absolute right-0 top-full translate-y-1 pt-2 opacity-0 transition duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
               >
-                {item.label}
-                <span class="transition group-open:rotate-180" aria-hidden="true">▾</span>
-              </summary>
-              <ul
-                class="absolute right-0 mt-1 min-w-44 rounded-lg border border-border bg-surface p-1 shadow-lg"
-              >
-                {item.children.map((c) => (
-                  <li>
-                    <a
-                      href={c.href}
-                      aria-current={isActive(c.href) ? "page" : undefined}
-                      class:list={[
-                        "block rounded-md px-3 py-2 text-sm hover:bg-bg hover:text-accent",
-                        isActive(c.href) && "text-accent",
-                      ]}
-                    >
-                      {c.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </details>
+                <ul class="min-w-44 rounded-lg border border-border bg-surface p-1">
+                  {item.children.map((c) => (
+                    <li>
+                      <a
+                        href={c.href}
+                        aria-current={isActive(c.href) ? "page" : undefined}
+                        class:list={[
+                          "block rounded-md px-3 py-2 text-sm hover:bg-bg hover:text-accent",
+                          isActive(c.href) && "text-accent",
+                        ]}
+                      >
+                        {c.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           ) : (
             <a
               href={item.href}
