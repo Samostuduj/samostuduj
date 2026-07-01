@@ -80,6 +80,25 @@
   --accent-contrast: #16131f;
 }
 
+/* ---------------------------------------------------------------------------
+   Announcement type colors. Each `[data-type]` sets a desaturated `--type`
+   hue; components derive the badge tint + a faint surface wash from it via
+   color-mix. `novinka` intentionally reuses the house accent.
+--------------------------------------------------------------------------- */
+[data-type="novy-obsah"] { --type: #3f7d4e; }
+[data-type="hledame"]    { --type: #946011; }
+[data-type="novinka"]    { --type: var(--accent); }
+[data-type="udalost"]    { --type: #2f7d78; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) [data-type="novy-obsah"] { --type: #7fb98d; }
+  :root:not(.light) [data-type="hledame"]    { --type: #d7a54a; }
+  :root:not(.light) [data-type="udalost"]    { --type: #5fb3ac; }
+}
+.dark [data-type="novy-obsah"] { --type: #7fb98d; }
+.dark [data-type="hledame"]    { --type: #d7a54a; }
+.dark [data-type="udalost"]    { --type: #5fb3ac; }
+
 @theme {
   --color-bg: var(--bg);
   --color-surface: var(--surface);

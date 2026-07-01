@@ -1,0 +1,58 @@
+---
+import Icon from "./Icon.astro";
+import TypeBadge from "./TypeBadge.astro";
+import { getLiveAktuality, pickStrip } from "../lib/aktuality";
+
+const item = pickStrip(await getLiveAktuality());
+---
+{
+  item && (
+    <div
+      data-announcement-strip
+      data-id={item.id}
+      data-type={item.data.type}
+      hidden
+      class="border-b border-border"
+      style="background: color-mix(in srgb, var(--type) 6%, var(--bg));"
+    >
+      <div class="mx-auto flex max-w-5xl items-center gap-3 px-4 py-2 text-sm md:px-6">
+        <TypeBadge type={item.data.type} />
+        {item.data.link ? (
+          <a href={item.data.link} class="font-medium hover:text-accent">
+            {item.data.title} <span aria-hidden="true">→</span>
+          </a>
+        ) : (
+          <span class="font-medium">{item.data.title}</span>
+        )}
+        <button
+          type="button"
+          data-dismiss
+          aria-label="Zavřít oznámení"
+          class="ml-auto shrink-0 rounded-md p-1 text-muted transition-colors hover:text-fg"
+        >
+          <Icon name="x" size={16} />
+        </button>
+      </div>
+    </div>
+  )
+}
+
+<script>
+  const KEY = "samostuduj-dismissed";
+  const strip = document.querySelector("[data-announcement-strip]");
+  if (strip) {
+    const id = strip.getAttribute("data-id");
+    let dismissed: string[] = [];
+    try {
+      dismissed = JSON.parse(localStorage.getItem(KEY) || "[]");
+    } catch {}
+    if (id && !dismissed.includes(id)) strip.removeAttribute("hidden");
+    strip.querySelector("[data-dismiss]")?.addEventListener("click", () => {
+      strip.setAttribute("hidden", "");
+      if (id && !dismissed.includes(id)) {
+        dismissed.push(id);
+        localStorage.setItem(KEY, JSON.stringify(dismissed));
+      }
+    });
+  }
+</script>

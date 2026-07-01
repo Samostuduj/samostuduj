@@ -2,10 +2,14 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
+import TypeBadge from "../components/TypeBadge.astro";
+import { getLiveAktuality, pickHero } from "../lib/aktuality";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
+
+const aktuality = pickHero(await getLiveAktuality());
 
 const audience = [
   { icon: "graduation-cap", title: "Zklamaní studenti", text: "Školní systém tě zklamal? Vezmi vzdělávání do vlastních rukou — uč se to, co tě opravdu zajímá, vlastním tempem." },
@@ -15,36 +19,94 @@ const audience = [
 ] as const;
 
 const dateFmt = new Intl.DateTimeFormat("cs-CZ", { dateStyle: "long" });
+const dateShort = new Intl.DateTimeFormat("cs-CZ", { day: "numeric", month: "long" });
 ---
 
 <BaseLayout>
-  <!-- Hero -->
+  <!-- Hero + aktuálně panel -->
   <section class="mx-auto max-w-5xl px-4 pt-16 pb-12 md:px-6 md:pt-24">
-    <p class="mb-4 inline-block rounded-full border border-accent px-3 py-1 text-xs font-medium text-accent">
-      Zdarma · svobodné licence · vlastním tempem
-    </p>
-    <h1 class="max-w-3xl text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-      Učení není pro každého stejné.<br />
-      <span class="text-accent">Uč se po svém.</span>
-    </h1>
-    <p class="mt-6 max-w-2xl text-lg text-fg">
-      Ze školy sis odnesl(a) spíš pachuť než motivaci? Možná to jen chce jiný
-      přístup. <em>Samostuduj</em> je projekt pro lidi, kteří se chtějí vzdělávat
-      stejně důkladně jako na vysoké škole — ale po svém.
-    </p>
-    <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-      <a
-        href="/plany"
-        class="rounded-lg bg-accent px-5 py-3 font-medium text-accent-contrast transition hover:opacity-90"
-      >
-        Prozkoumat studijní plány
-      </a>
-      <a
-        href="/blog"
-        class="font-medium text-muted transition hover:text-accent"
-      >
-        Číst blog →
-      </a>
+    <div
+      class:list={[
+        aktuality.length > 0 &&
+          "gap-10 md:grid md:grid-cols-[2fr_1fr] md:items-stretch",
+      ]}
+    >
+      <div>
+        <p class="mb-4 inline-block rounded-full border border-accent px-3 py-1 text-xs font-medium text-accent">
+          Zdarma · svobodné licence · vlastním tempem
+        </p>
+        <h1 class="max-w-3xl text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+          Učení není pro každého stejné.<br />
+          <span class="text-accent">Uč se po svém.</span>
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg text-fg">
+          Ze školy sis odnesl(a) spíš pachuť než motivaci? Možná to jen chce jiný
+          přístup. <em>Samostuduj</em> je projekt pro lidi, kteří se chtějí vzdělávat
+          stejně důkladně jako na vysoké škole — ale po svém.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <a
+            href="/plany"
+            class="rounded-lg bg-accent px-5 py-3 font-medium text-accent-contrast transition hover:opacity-90"
+          >
+            Prozkoumat studijní plány
+          </a>
+          <a
+            href="/blog"
+            class="font-medium text-muted transition hover:text-accent"
+          >
+            Číst blog →
+          </a>
+        </div>
+      </div>
+
+      {
+        aktuality.length > 0 && (
+          <aside class="mt-10 rounded-2xl border border-border bg-surface p-6 md:mt-0">
+            <div class="flex items-baseline justify-between gap-3">
+              <h2 class="font-semibold">Aktuálně</h2>
+              <a href="/aktuality" class="text-xs text-accent hover:underline">
+                Vše →
+              </a>
+            </div>
+            <ul class="mt-3 divide-y divide-border">
+              {aktuality.map((entry) => {
+                const Tag = entry.data.link ? "a" : "div";
+                return (
+                  <li>
+                    <Tag
+                      {...(entry.data.link ? { href: entry.data.link } : {})}
+                      class:list={[
+                        "group block py-3",
+                        entry.data.link && "cursor-pointer",
+                      ]}
+                    >
+                      <div class="flex items-center justify-between gap-2">
+                        <TypeBadge type={entry.data.type} />
+                        <time
+                          class="shrink-0 text-xs text-muted"
+                          datetime={entry.data.date.toISOString()}
+                        >
+                          {dateShort.format(entry.data.date)}
+                        </time>
+                      </div>
+                      <p
+                        class:list={[
+                          "mt-1.5 text-sm font-medium leading-snug",
+                          entry.data.link &&
+                            "transition-colors group-hover:text-accent",
+                        ]}
+                      >
+                        {entry.data.title}
+                      </p>
+                    </Tag>
+                  </li>
+                );
+              })}
+            </ul>
+          </aside>
+        )
+      }
     </div>
   </section>
 

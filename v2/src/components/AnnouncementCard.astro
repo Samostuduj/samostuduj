@@ -1,0 +1,45 @@
+---
+import { render } from "astro:content";
+import TypeBadge from "./TypeBadge.astro";
+import type { Aktualita } from "../lib/aktuality";
+
+interface Props {
+  entry: Aktualita;
+}
+const { entry } = Astro.props;
+const { title, type, link } = entry.data;
+const { Content } = await render(entry);
+const Tag = link ? "a" : "div";
+---
+<Tag
+  {...(link ? { href: link } : {})}
+  data-type={type}
+  class:list={[
+    "group block rounded-xl border border-border p-5 transition-colors",
+    link && "hover:border-accent",
+  ]}
+  style="background: color-mix(in srgb, var(--type) 4%, var(--surface));"
+>
+  <div class="flex items-center justify-between gap-3">
+    <TypeBadge type={type} />
+    {link && (
+      <span
+        class="text-accent opacity-0 transition-opacity group-hover:opacity-100"
+        aria-hidden="true"
+      >
+        →
+      </span>
+    )}
+  </div>
+  <h3
+    class:list={[
+      "mt-3 font-semibold leading-snug",
+      link && "transition-colors group-hover:text-accent",
+    ]}
+  >
+    {title}
+  </h3>
+  <div class="prose mt-1.5 text-sm text-muted [&_p]:my-0">
+    <Content />
+  </div>
+</Tag>

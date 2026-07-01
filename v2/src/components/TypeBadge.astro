@@ -1,0 +1,18 @@
+---
+import Icon from "./Icon.astro";
+import { TYPE_META } from "../lib/aktuality";
+
+interface Props {
+  type: keyof typeof TYPE_META;
+}
+const { type } = Astro.props;
+const meta = TYPE_META[type];
+---
+<span
+  data-type={type}
+  class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium"
+  style="background: color-mix(in srgb, var(--type) 14%, transparent); color: var(--type);"
+>
+  <Icon name={meta.icon as any} size={13} />
+  {meta.label}
+</span>

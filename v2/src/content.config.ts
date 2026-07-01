@@ -49,4 +49,28 @@ const plany = defineCollection({
   }),
 });
 
-export const collections = { blog, obory, plany };
+// Aktuality — short, time-bound announcements (new content, calls for help,
+// news, events). Surfaced in a site-wide strip, a homepage band, and /aktuality.
+const aktuality = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/aktuality" }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    // Drives the type badge, icon, and per-type color.
+    type: z
+      .enum(["novy-obsah", "hledame", "novinka", "udalost"])
+      .default("novinka"),
+    // Optional CTA target (e.g. /plany/uvod-do-psychologie).
+    link: z.string().optional(),
+    // Prominence ladder. strip = site-wide strip + homepage band + archive;
+    // hero = homepage band + archive; archive = /aktuality only (default).
+    placement: z.enum(["strip", "hero", "archive"]).default("archive"),
+    // Wins the single strip slot when several items are placement:strip.
+    pinned: z.boolean().default(false),
+    // Auto-hidden after this date (build-time filter).
+    expires: z.coerce.date().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { blog, obory, plany, aktuality };
