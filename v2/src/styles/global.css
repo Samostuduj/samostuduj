@@ -45,9 +45,9 @@
   --fg: #212121;
   --muted: #5f5f5f;
   --border: #e2e2dc;
-  /* Brand accent — indigo/purple from the kit. TODO: sample the exact hex
-     from samostuduj_logo_CZ.pdf annotations and replace these placeholders. */
-  --accent: #5a4bd8;
+  /* Brand accent — the indigo pen ink sampled from the brand kit's
+     hand-drawn collateral (docs/branding/samostuduj_logo_CZ.pdf, H245°). */
+  --accent: #575196;
   --accent-contrast: #ffffff;
 }
 
@@ -58,7 +58,8 @@
     --fg: #e0e0e0;
     --muted: #9a9a9a;
     --border: #2c2c2c;
-    --accent: #b3a7f5;
+    /* Lighter tint of the same brand hue for legibility on dark. */
+    --accent: #8b85cc;
     --accent-contrast: #16131f;
   }
 }
@@ -69,7 +70,7 @@
   --fg: #e0e0e0;
   --muted: #9a9a9a;
   --border: #2c2c2c;
-  --accent: #b3a7f5;
+  --accent: #8b85cc;
   --accent-contrast: #16131f;
 }
 
