@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
+import brandKit from './scripts/brand-kit.mjs';
 
 // Keystatic is a local-mode admin at /keystatic. Gate its integrations (plus
 // React, which only powers that admin UI) to `astro dev` so the production
@@ -19,5 +20,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [sitemap(), ...(isDev ? [react(), keystatic()] : [])],
+  // brandKit regenerates the downloadable zip from public/brand/ assets on
+  // every dev + build, so it's never committed and can't drift from source.
+  integrations: [brandKit(), sitemap(), ...(isDev ? [react(), keystatic()] : [])],
 });

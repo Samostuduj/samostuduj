@@ -1,5 +1,5 @@
 ---
-const year = new Date().getFullYear();
+import Icon from "./Icon.astro";
 ---
 
 <footer class="mt-24 border-t border-border">
@@ -26,6 +26,7 @@ const year = new Date().getFullYear();
         <li><a href="/chci-pomoct" class="hover:text-accent">Chci pomoct</a></li>
         <li><a href="/faq" class="hover:text-accent">FAQ</a></li>
         <li><a href="/kontakt" class="hover:text-accent">Kontakt</a></li>
+        <li><a href="/znacka" class="hover:text-accent">Značka</a></li>
       </ul>
     </nav>
 
@@ -45,7 +46,12 @@ const year = new Date().getFullYear();
           class="text-accent hover:underline">CC BY-SA 4.0</a
         >
       </p>
-      <p class="mt-4 text-muted">© {year} Samostuduj</p>
+      <a
+        href="https://github.com/Samostuduj/samostuduj"
+        class="mt-4 inline-flex items-center gap-2 font-bold hover:text-accent"
+      >
+        <Icon name="github" size={18} />Zdrojový kód na GitHubu
+      </a>
     </div>
   </div>
 </footer>

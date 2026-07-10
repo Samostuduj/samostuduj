@@ -1,5 +1,7 @@
 # build output
 dist/
+# generated at build time by scripts/brand-kit.mjs
+public/brand/samostuduj-brand-kit.zip
 # generated types
 .astro/
 # dependencies

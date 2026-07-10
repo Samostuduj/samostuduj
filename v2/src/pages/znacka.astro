@@ -1,0 +1,264 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+
+// Logo variants. Icon is square, the wordmark is wide — the differing tile
+// shapes keep this from reading as a uniform card grid.
+const logos = [
+  {
+    name: "Ikona",
+    slug: "samostuduj_icon",
+    popis: "Samostatný symbol pro profilové obrázky, favicon a malé plochy.",
+    tile: "aspect-square",
+    pad: "p-8",
+  },
+  {
+    name: "Logo se slovní částí",
+    slug: "samostuduj_logo",
+    popis: "Výchozí varianta značky. Použij ji všude, kde je dost místa.",
+    tile: "aspect-[1019/210]",
+    pad: "px-10 py-6",
+  },
+];
+
+// Canonical light-mode palette — kept in lockstep with the tokens in
+// src/styles/global.css. Values here are the single source shown publicly.
+const barvy = [
+  {
+    token: "--accent",
+    hex: "#575196",
+    label: "Akcent — inkoust",
+    note: "V tmavém režimu se rozjasní na #8b85cc.",
+    ink: true,
+  },
+  { token: "--fg", hex: "#212121", label: "Text" },
+  { token: "--muted", hex: "#333333", label: "Tlumený text" },
+  { token: "--bg", hex: "#fafafa", label: "Pozadí" },
+  { token: "--surface", hex: "#f1f1ee", label: "Plocha" },
+  { token: "--border", hex: "#e2e2dc", label: "Linka" },
+];
+
+const rezy = [
+  { weight: 300, name: "Light" },
+  { weight: 400, name: "Regular" },
+  { weight: 500, name: "Medium" },
+  { weight: 600, name: "SemiBold" },
+  { weight: 700, name: "Bold" },
+];
+
+const ano = [
+  "Používej dodané soubory beze změn.",
+  "Nech kolem značky volný prostor alespoň ve výšce ikony.",
+  "Na světlé pozadí sáhni po černé variantě, na tmavé po bílé.",
+  "Drž se inkoustové akcentní barvy.",
+];
+const ne = [
+  "Nepřebarvuj značku ani ji nevykládej vlastními barvami.",
+  "Nedeformuj, neotáčej ani nezkosuj ji.",
+  "Nepřidávej stín ani obrys — papír neplave.",
+  "Neumisťuj ji na rušivé pozadí bez dostatečného kontrastu.",
+];
+---
+
+<BaseLayout
+  title="Značka"
+  description="Logo, barvy, písmo a pravidla používání značky Samostuduj — ke stažení a k volnému šíření."
+>
+  <section class="mx-auto max-w-4xl px-4 py-16 md:px-6">
+    <h1 class="text-3xl font-bold tracking-tight md:text-4xl">Značka</h1>
+    <p class="mt-4 max-w-2xl text-muted leading-relaxed">
+      Tady najdeš logo, barvy, písmo i pár pravidel, jak s nimi zacházet. Ať už
+      o projektu píšeš, chystáš leták nebo příspěvek na sociální sítě — vezmi si,
+      co potřebuješ. Materiály jsou volné k šíření, jen prosím zachovej značku
+      tak, jak je.
+    </p>
+    <a
+      href="/brand/samostuduj-brand-kit.zip"
+      class="mt-6 inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 font-medium text-accent-contrast transition hover:opacity-90"
+      download
+    >
+      <Icon name="feather" size={18} />Stáhnout celý kit (.zip)
+    </a>
+
+    <!-- ── Logo ─────────────────────────────────────────────────────────── -->
+    <h2 class="mt-16 border-t border-border pt-10 text-xl font-semibold">Logo</h2>
+    <p class="mt-2 max-w-2xl text-muted leading-relaxed">
+      Značka má dvě podoby a dvě barevné varianty. Světlé pozadí volá po černé,
+      tmavé po bílé.
+    </p>
+
+    <div class="mt-8 space-y-12">
+      {
+        logos.map((l) => (
+          <div>
+            <h3 class="font-semibold">{l.name}</h3>
+            <p class="mt-1 text-sm text-muted">{l.popis}</p>
+            <div class="mt-4 grid gap-4 sm:grid-cols-2">
+              <figure>
+                <div
+                  class={`flex ${l.tile} ${l.pad} items-center justify-center rounded-xl border border-[#e2e2dc] bg-[#fafafa]`}
+                >
+                  <img
+                    src={`/brand/${l.slug}_black.svg`}
+                    alt={`${l.name} — černá varianta`}
+                    class="max-h-full max-w-full"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption class="mt-2 flex items-center justify-between text-xs text-muted">
+                  <span>Černá · na světlé pozadí</span>
+                  <span class="flex gap-2">
+                    <a class="text-accent hover:underline" href={`/brand/${l.slug}_black.svg`} download>SVG</a>
+                    <a class="text-accent hover:underline" href={`/brand/${l.slug}_black.png`} download>PNG</a>
+                  </span>
+                </figcaption>
+              </figure>
+              <figure>
+                <div
+                  class={`flex ${l.tile} ${l.pad} items-center justify-center rounded-xl border border-[#2c2c2c] bg-[#121212]`}
+                >
+                  <img
+                    src={`/brand/${l.slug}_white.svg`}
+                    alt={`${l.name} — bílá varianta`}
+                    class="max-h-full max-w-full"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption class="mt-2 flex items-center justify-between text-xs text-muted">
+                  <span>Bílá · na tmavé pozadí</span>
+                  <span class="flex gap-2">
+                    <a class="text-accent hover:underline" href={`/brand/${l.slug}_white.svg`} download>SVG</a>
+                    <a class="text-accent hover:underline" href={`/brand/${l.slug}_white.png`} download>PNG</a>
+                  </span>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-8 text-sm text-muted leading-relaxed">
+      <span class="font-medium text-fg">Volný prostor a velikost.</span> Nech
+      kolem značky dýchací prostor alespoň ve výšce ikony a nezmenšuj ji pod
+      čitelnou velikost — pro logo se slovní částí zhruba 120&nbsp;px na šířku.
+    </p>
+
+    <!-- ── Barvy ────────────────────────────────────────────────────────── -->
+    <h2 class="mt-16 border-t border-border pt-10 text-xl font-semibold">Barvy</h2>
+    <p class="mt-2 max-w-2xl text-muted leading-relaxed">
+      Základ je papírová neutrální paleta, oživená jediným inkoustovým akcentem.
+      Akcent drž pod zhruba desetinou plochy — ať zůstane výjimkou, ne tapetou.
+      Klikni na kód barvy pro zkopírování.
+    </p>
+
+    <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        barvy.map((b) => (
+          <div class="flex items-center gap-3 rounded-xl border border-border bg-surface p-3">
+            <span
+              class="h-10 w-10 shrink-0 rounded-lg border border-border"
+              style={`background:${b.hex}`}
+              aria-hidden="true"
+            />
+            <div class="min-w-0">
+              <p class="truncate text-sm font-medium">{b.label}</p>
+              <button
+                type="button"
+                class="copy-hex text-xs text-muted transition hover:text-accent"
+                data-hex={b.hex}
+                title="Zkopírovat"
+              >
+                <code>{b.hex}</code> <span class="text-muted/70">{b.token}</span>
+              </button>
+              {b.note && <p class="mt-0.5 text-xs text-muted/80">{b.note}</p>}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- ── Písmo ────────────────────────────────────────────────────────── -->
+    <h2 class="mt-16 border-t border-border pt-10 text-xl font-semibold">Písmo</h2>
+    <p class="mt-2 max-w-2xl text-muted leading-relaxed">
+      Celá značka mluví jedním hlasem —
+      <a href="https://fonts.google.com/specimen/Source+Code+Pro" class="text-accent hover:underline">Source Code Pro</a>.
+      Strojopisný, otevřený, trochu jako poznámky v sešitě. Používáme ho všude,
+      od nadpisů po popisky.
+    </p>
+
+    <div class="mt-6 divide-y divide-border rounded-xl border border-border bg-surface">
+      {
+        rezy.map((r) => (
+          <div class="flex items-baseline justify-between gap-4 px-4 py-3">
+            <span class="text-lg md:text-xl" style={`font-weight:${r.weight}`}>
+              Uč se po svém
+            </span>
+            <span class="shrink-0 text-xs text-muted">
+              {r.name} · {r.weight}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- ── Používání ────────────────────────────────────────────────────── -->
+    <h2 class="mt-16 border-t border-border pt-10 text-xl font-semibold">Používání</h2>
+    <div class="mt-6 grid gap-6 sm:grid-cols-2">
+      <div class="rounded-xl border border-accent/40 bg-accent/5 p-5">
+        <p class="text-sm font-semibold text-accent">Ano</p>
+        <ul class="mt-3 space-y-2 text-sm text-muted">
+          {ano.map((t) => <li>{t}</li>)}
+        </ul>
+      </div>
+      <div class="rounded-xl border border-border bg-surface p-5">
+        <p class="text-sm font-semibold">Ne</p>
+        <ul class="mt-3 space-y-2 text-sm text-muted">
+          {ne.map((t) => <li>{t}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── Duch značky ──────────────────────────────────────────────────── -->
+    <h2 class="mt-16 border-t border-border pt-10 text-xl font-semibold">Duch značky</h2>
+    <div class="mt-4 max-w-2xl space-y-4 text-muted leading-relaxed">
+      <p>
+        <span class="font-medium text-fg">Sešit samouka.</span> Vizuální styl
+        vychází z ručně psaných poznámek — strojopisné písmo, tónované papírové
+        plochy, vlasové linky a jemná struktura papíru. Nic se nevznáší:
+        používáme obrysy a odstíny, ne vržené stíny.
+      </p>
+      <p>
+        <span class="font-medium text-fg">Jeden inkoust.</span> Na stránce vládne
+        klid. Akcentní barva je jako pero — zvýrazní to podstatné, ale nepřepíše
+        celou stránku. Drž ji pod zhruba desetinou plochy.
+      </p>
+      <p>
+        <span class="font-medium text-fg">Hlas.</span> Navenek mluvíme vlídně a
+        zveme, ne poučujeme. Tam, kde jde o tvrdá rozhodnutí a hodnoty, mluví
+        <a href="/manifest" class="text-accent hover:underline">Manifest</a>.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    // Click a color's hex to copy it. Progressive: the value is always
+    // visible as text, this just saves a manual selection.
+    document.querySelectorAll<HTMLButtonElement>(".copy-hex").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const hex = btn.dataset.hex;
+        if (!hex) return;
+        try {
+          await navigator.clipboard.writeText(hex);
+          const code = btn.querySelector("code");
+          if (!code) return;
+          const original = code.textContent;
+          code.textContent = "zkopírováno";
+          setTimeout(() => (code.textContent = original), 1200);
+        } catch {
+          /* clipboard unavailable — the hex stays selectable as text */
+        }
+      });
+    });
+  </script>
+</BaseLayout>
