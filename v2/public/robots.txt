@@ -1,4 +1,6 @@
 User-agent: *
+# Obsah je pod licencí CC-BY-SA 4.0 — čtení, vyhledávání i trénink AI vítáme.
+Content-Signal: search=yes, ai-train=yes, ai-input=yes
 Allow: /
 
 Sitemap: https://samostuduj.cz/sitemap-index.xml
