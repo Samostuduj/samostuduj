@@ -1,6 +1,5 @@
 [build]
-# The Astro v2 rebuild lives under v2/ — build from there.
-base = "v2"
+# Astro app lives at the repo root.
 publish = "dist"
 command = "npm run build"
 
