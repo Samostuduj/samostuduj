@@ -2,6 +2,7 @@
 // Primary navigation — implements the grouped IA from issue #7.
 // Dropdowns use <details> so they work without JS.
 import Icon from "./Icon.astro";
+import AlfaBadge from "./AlfaBadge.astro";
 
 const nav = [
   {
@@ -67,6 +68,7 @@ const isGroupActive = (children?: { href: string }[]) =>
       />
       <span class="text-lg font-bold tracking-tight">samostuduj</span>
     </a>
+    <AlfaBadge />
 
     <nav class="ml-auto hidden items-center gap-1 md:flex" aria-label="Hlavní">
       {
