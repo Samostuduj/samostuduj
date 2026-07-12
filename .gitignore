@@ -11,6 +11,10 @@ node_modules/
 .env.production
 # macOS
 .DS_Store
+# local tooling / CLI artifacts
+.netlify/
+.playwright-mcp/
+deno.lock
 
 # impeccable-live-ignore-start
 .impeccable/hook.cache.json
