@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
+import manifest from "../../data/letaky/manifest.json";
+
+const dateFmt = new Intl.DateTimeFormat("cs-CZ", { dateStyle: "long" });
+---
+
+<BaseLayout
+  title="Letáky"
+  description="Tisknutelné letáky Samostuduj — stáhni, vytiskni a šiř dál. Ukázky samostudia v praxi ve formátu A5."
+>
+  <section class="mx-auto max-w-3xl px-4 py-16 md:px-6">
+    <h1 class="text-3xl font-bold tracking-tight md:text-4xl">Letáky</h1>
+    <p class="mt-3 text-muted leading-relaxed">
+      Jedno téma, pár minut čtení. Každý leták je malá ukázka samostudia v praxi — něco běžného, co začne být
+      zajímavé, jakmile se do toho ponoříš. Stáhni si je, vytiskni a nech je žít ve světě.
+    </p>
+
+    {
+      manifest.flyers.length === 0 ? (
+        <div class="mt-12 rounded-xl border border-border bg-surface p-10 text-center">
+          <span class="mx-auto flex h-16 w-16 items-center justify-center rounded-xl bg-accent/10 text-accent">
+            <Icon name="printer" size={32} />
+          </span>
+          <h2 class="mt-5 text-xl font-semibold">Zatím tu nic není</h2>
+          <p class="mt-2 text-muted">Letáky ke stažení a tisku připravujeme.</p>
+          <a
+            href="/chci-pomoct"
+            class="mt-6 inline-block rounded-lg bg-accent px-5 py-3 font-medium text-accent-contrast transition hover:opacity-90"
+          >
+            Chci pomoct s tvorbou
+          </a>
+        </div>
+      ) : (
+        <ul class="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">
+          {manifest.flyers.map((flyer) => (
+            <li>
+              <a href={`/letaky/${flyer.slug}`} class="group block">
+                <img
+                  src={flyer.files.previews[0]}
+                  alt=""
+                  width="1118"
+                  height="1587"
+                  loading="lazy"
+                  class="w-full border border-border"
+                />
+                <h2 class="mt-3 text-sm font-semibold leading-snug group-hover:text-accent">{flyer.title}</h2>
+                <p class="mt-1 text-xs text-muted">
+                  <time datetime={flyer.publishedAt}>{dateFmt.format(new Date(flyer.publishedAt))}</time>
+                </p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <div class="mt-14 space-y-3 border-t border-border pt-8 text-sm text-muted">
+      <p>
+        Tisk: leták má přední a zadní stranu ve formátu A5. Tiskni oboustranně, nebo na A4 zvol „dvě stránky na
+        list“ a papír přehni napůl.
+      </p>
+      <p>
+        Všechny letáky jsou pod licencí CC BY-SA 4.0 — kopíruj, tiskni a šiř dál, jen uveď zdroj. Zdrojové soubory
+        najdeš <a href="https://github.com/nktrjsk/letaky" class="text-accent hover:underline">na GitHubu</a>.
+      </p>
+      <p>
+        Chceš pomoct s tvorbou dalších letáků? <a href="/chci-pomoct" class="text-accent hover:underline">Ozvi se.</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

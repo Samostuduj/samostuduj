@@ -16,6 +16,11 @@ node_modules/
 .playwright-mcp/
 deno.lock
 
+# generated at build time by scripts/letaky.mjs (fetched + rendered flyers)
+.letaky/
+public/letaky/
+src/data/letaky/
+
 # impeccable-live-ignore-start
 .impeccable/hook.cache.json
 .impeccable/live/server.json

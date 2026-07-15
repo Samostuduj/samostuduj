@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
+import manifest from "../data/letaky/manifest.json";
 
 // /llms.txt — a curated, plain-text index for LLM agents (see llmstxt.org).
 // Generated at build time from the same content collections the site renders,
@@ -35,6 +36,9 @@ ${plany.map((p) => line(p.data.title, `${SITE}/plany/${p.id}`, p.data.summary)).
 
 ## Blog
 ${blog.map((b) => line(b.data.title, `${SITE}/blog/${b.id}`, b.data.summary)).join("\n")}
+
+## Letáky
+${manifest.flyers.map((f) => line(f.title, `${SITE}/letaky/${f.slug}`)).join("\n")}
 
 ## O projektu
 ${[

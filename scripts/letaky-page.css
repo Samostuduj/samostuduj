@@ -1,0 +1,238 @@
+/* Ported flyer CSS for the build-time letáky renderer (scripts/letaky.mjs).
+   Source: /Users/nikita/projekty/flyer-editor src/style.css — the `.page` and
+   descendant rules that produce the printed A5 flyer, minus the editor chrome
+   (contenteditable affordances, overflow indicators, page labels, --ui-*
+   tokens) which never appear in the static render. The on-screen box-shadow
+   is dropped entirely: render artifacts must have no screen shadow. */
+
+:root {
+  --accent: #1d6a5e;
+  --accent-light: #eaf3f1;
+  --bg: #faf9f6;
+  --text: #1c1c1e;
+  --muted: #5c5c5c;
+  --border: #d4d0c8;
+  --font-display: 'Fraunces Variable', Georgia, serif;
+  --font-body: 'Crimson Pro', Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+}
+
+/* Stack pages on screen with a small gap; print lays them out edge-to-edge. */
+body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  align-items: flex-start;
+}
+
+/* ─── A5 page ─────────────────────────────────── */
+.page {
+  width: 148mm;
+  height: 210mm; /* fixed A5 — matches the printed page exactly */
+  background: var(--bg);
+  font-family: var(--font-body);
+  padding: 12mm 14mm;
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+  flex-shrink: 0;
+  overflow: hidden; /* clip content past the page edge (it won't print either) */
+  position: relative;
+  --base: 9.5pt; /* overridden per-page inline */
+}
+
+/* ─── B&W palette override ────────────────────── */
+.page[data-palette='bw'] {
+  --accent: #1a1a1a;
+  --accent-light: #efefef;
+  --muted: #4a4a4a;
+  --border: #aaa;
+}
+
+/* ─── Title block ─────────────────────────────── */
+.page-title-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4mm;
+  margin-bottom: 5mm;
+  padding-bottom: 4mm;
+  border-bottom: 0.75pt solid var(--border);
+  flex-shrink: 0;
+}
+
+.page-logo {
+  max-height: 18mm;
+  max-width: 28mm;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.page-title-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-optical-sizing: auto;
+  font-size: 34pt; /* JS may override this */
+  line-height: 1.05;
+  color: var(--accent);
+  overflow: visible;
+  margin-bottom: 1.5mm;
+}
+
+.page-meta {
+  font-size: 8.5pt;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ─── Content area ────────────────────────────── */
+.page-content {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page-content h2 {
+  font-family: var(--font-display);
+  font-size: 11pt;
+  font-weight: 600;
+  font-optical-sizing: auto;
+  color: var(--accent);
+  margin-top: 4.5mm;
+  margin-bottom: 1.5mm;
+}
+
+.page-content h3 {
+  font-family: var(--font-display);
+  font-size: 10pt;
+  font-weight: 300;
+  font-optical-sizing: auto;
+  color: var(--muted);
+  margin-top: 2mm;
+  margin-bottom: 1mm;
+}
+
+.page-content p {
+  font-size: var(--base, 9.5pt);
+  line-height: 1.58;
+  margin-bottom: 1.5mm;
+  hyphens: auto;
+}
+
+.page-content strong {
+  font-weight: 600;
+}
+.page-content em {
+  font-style: italic;
+}
+
+.page-content del {
+  color: var(--muted);
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1.5px;
+}
+
+.page-content ul,
+.page-content ol {
+  list-style: none;
+  margin: 1mm 0 2mm;
+  padding: 0;
+}
+
+.page-content li {
+  font-size: var(--base, 9.5pt);
+  line-height: 1.52;
+  padding-left: 4.5mm;
+  position: relative;
+  margin-bottom: 1mm;
+  hyphens: auto;
+}
+
+.page-content ul > li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.page-content ol {
+  counter-reset: li;
+}
+.page-content ol > li {
+  counter-increment: li;
+}
+.page-content ol > li::before {
+  content: counter(li) '.';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 8.5pt;
+}
+
+/* blockquote → callout */
+.page-content blockquote {
+  background: var(--accent-light);
+  border-left: 2.5pt solid var(--accent);
+  padding: 3mm 4mm;
+  margin: 2.5mm 0;
+}
+.page-content blockquote p {
+  font-size: var(--base, 9.5pt);
+  margin-bottom: 0;
+}
+
+/* ─── Footer ──────────────────────────────────── */
+.page-footer {
+  flex-shrink: 0;
+  margin-top: 4mm;
+  padding-top: 3mm;
+  border-top: 0.75pt solid var(--border);
+  font-size: 7.5pt;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 4mm;
+}
+
+/* ─── Print ───────────────────────────────────── */
+@page {
+  size: A5;
+  margin: 0;
+}
+
+@media print {
+  body {
+    display: block;
+    padding: 0;
+    gap: 0;
+  }
+
+  .page {
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .page:last-of-type {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+}

@@ -12,13 +12,20 @@
   "dependencies": {
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.7.3",
+    "@fontsource-variable/fraunces": "^5.2.9",
+    "@fontsource/crimson-pro": "^5.2.8",
     "@keystatic/astro": "^5.1.0",
     "@keystatic/core": "^0.5.50",
     "@tailwindcss/vite": "^4.1.0",
     "adm-zip": "^0.5.18",
     "astro": "^5.6.0",
+    "marked": "^12.0.0",
+    "puppeteer": "^25.3.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tailwindcss": "^4.1.0"
+  },
+  "allowScripts": {
+    "puppeteer@25.3.0": true
   }
 }

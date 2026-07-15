@@ -1,0 +1,120 @@
+---
+import { marked } from "marked";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/Icon.astro";
+import manifest from "../../data/letaky/manifest.json";
+
+export async function getStaticPaths() {
+  return manifest.flyers.map((flyer) => ({
+    params: { slug: flyer.slug },
+    props: { flyer },
+  }));
+}
+
+const { flyer } = Astro.props;
+const dateFmt = new Intl.DateTimeFormat("cs-CZ", { dateStyle: "long" });
+
+// Plain-text excerpt of the Markdown body for the meta description: strip
+// Markdown syntax, collapse whitespace, truncate on a word boundary.
+function excerpt(markdown: string, maxLen = 155): string {
+  const plain = markdown
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/^\s*[-*+]\s+/gm, "")
+    .replace(/^\s*\d+\.\s+/gm, "")
+    .replace(/^-{3,}\s*$/gm, "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[*~`]/g, "")
+    .replace(/#/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (plain.length <= maxLen) return plain;
+  const truncated = plain.slice(0, maxLen);
+  const lastSpace = truncated.lastIndexOf(" ");
+  return `${truncated.slice(0, lastSpace > 0 ? lastSpace : maxLen)}…`;
+}
+
+const description = excerpt(flyer.body);
+const publishedPdf = flyer.palette === "color" ? flyer.files.pdfColor : flyer.files.pdfBw;
+const otherPdf =
+  flyer.palette === "color"
+    ? { href: flyer.files.pdfBw, label: "PDF (černobílá verze)" }
+    : { href: flyer.files.pdfColor, label: "PDF (barevná verze)" };
+
+const previewAlts = flyer.files.previews.map((_: string, i: number) => {
+  if (i === 0) return `Přední strana letáku ${flyer.title}`;
+  if (i === 1) return `Zadní strana letáku ${flyer.title}`;
+  return `Strana ${i + 1} letáku ${flyer.title}`;
+});
+---
+
+<BaseLayout title={flyer.title} description={description} image={flyer.files.previews[0]}>
+  <article class="mx-auto max-w-2xl px-4 py-16 md:px-6">
+    <a href="/letaky" class="text-sm text-accent hover:underline">← Zpět na letáky</a>
+    <header class="mt-6">
+      <h1 class="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
+        {flyer.title}
+      </h1>
+      <p class="mt-3 text-sm text-muted">
+        <time datetime={flyer.publishedAt}>{dateFmt.format(new Date(flyer.publishedAt))}</time>
+        · verze {flyer.version}
+      </p>
+    </header>
+
+    <div class="mt-8 grid grid-cols-2 gap-4">
+      {
+        flyer.files.previews.map((src: string, i: number) => (
+          <img
+            src={src}
+            alt={previewAlts[i]}
+            width="1118"
+            height="1587"
+            loading={i === 0 ? "eager" : "lazy"}
+            class="w-full border border-border"
+          />
+        ))
+      }
+    </div>
+
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a
+        href={publishedPdf}
+        download
+        class="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 font-medium text-accent-contrast transition hover:opacity-90"
+      >
+        <Icon name="download" size={18} /> Stáhnout PDF
+      </a>
+      <a
+        href={otherPdf.href}
+        class="inline-flex items-center rounded-lg border border-border px-5 py-3 font-medium transition hover:border-accent hover:text-accent"
+      >
+        {otherPdf.label}
+      </a>
+      <a
+        href={flyer.files.md}
+        class="inline-flex items-center rounded-lg border border-border px-5 py-3 font-medium transition hover:border-accent hover:text-accent"
+      >
+        Zdroj (Markdown)
+      </a>
+    </div>
+    <p class="mt-4 text-sm text-muted">
+      Tiskni oboustranně na A5, nebo na A4 zvol „dvě stránky na list“ a přehni napůl.
+    </p>
+
+    <h2 class="mt-12 border-t border-border pt-8 text-xl font-semibold">Text letáku</h2>
+    <div class="prose mt-6" set:html={marked.parse(flyer.body, { gfm: true })} />
+
+    <p class="mt-12 border-t border-border pt-6 text-sm text-muted">
+      Leták je pod licencí CC BY-SA 4.0.{" "}
+      <a
+        href={`https://github.com/nktrjsk/letaky/tree/main/flyers/${flyer.slug}`}
+        class="text-accent hover:underline"
+      >
+        >Zdroj a starší verze na GitHubu</a
+      >.
+    </p>
+  </article>
+</BaseLayout>
