@@ -1,0 +1,260 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+---
+
+<BaseLayout
+  title="Přispět"
+  description="Návody pro tvůrce obsahu Samostuduj — jak napsat přehled oboru, jak vést rozhovor „Den v praxi“ a jak nám hotový text poslat. Programování není potřeba."
+>
+  <section class="mx-auto max-w-3xl px-4 py-16 md:px-6">
+    <h1 class="text-3xl font-bold tracking-tight md:text-4xl">Přispět obsahem</h1>
+    <p class="mt-4 text-muted leading-relaxed">
+      Samostuduj tvoří lidi jako ty. Nemusíš umět programovat ani sahat na GitHub — když chceš pomoct s obsahem,
+      napiš text a pošli nám ho, o technickou stránku se postaráme my. Tahle stránka je návod, jak na to. Ještě
+      nevíš, čím bys mohl/a přispět? Mrkni nejdřív na <a href="/chci-pomoct" class="text-accent hover:underline"
+        >Chci pomoct</a
+      >.
+    </p>
+
+    <nav aria-label="Na této stránce" class="mt-8 rounded-xl border border-border bg-surface p-5 text-sm">
+      <p class="mb-2 text-xs uppercase tracking-wide text-muted">Na této stránce</p>
+      <ul class="space-y-1">
+        <li><a href="#napsat-obor" class="text-accent hover:underline">Jak napsat přehled oboru</a></li>
+        <li><a href="#den-v-praxi" class="text-accent hover:underline">Rozhovor „Den v praxi“</a></li>
+        <li><a href="#poslat" class="text-accent hover:underline">Jak nám text poslat</a></li>
+        <li><a href="#jak-piseme" class="text-accent hover:underline">Jak píšeme</a></li>
+      </ul>
+    </nav>
+
+    <!-- ============ JAK NAPSAT OBOR ============ -->
+    <div class="prose mt-16">
+      <h2 id="napsat-obor" class="flex items-center gap-3">
+        <span class="text-accent"><Icon name="feather" size={24} /></span>
+        Jak napsat přehled oboru
+      </h2>
+      <p>
+        Stránka oboru je pro člověka, který <strong>zvažuje, jestli se do daného oboru pustit</strong>. Je to
+        <em>mapa a rozcestník, ne učebnice</em> — má čtenáře zorientovat, upřímně mu pomoct s rozhodnutím a poslat
+        ho dál. Drž se téhle kostry; sekce ber jako osnovu, ne jako povinné škatulky.
+      </p>
+
+      <p class="rounded-xl border border-border bg-surface px-5 py-1 not-prose">
+        <span class="mt-3 block text-sm text-muted"
+          >Od tebe potřebujeme dvě věci navíc do hlavičky (technický zbytek doplníme):</span
+        >
+        <span class="my-3 block text-sm"
+          ><strong>Jedna neutrální věta</strong> — co obor zkoumá (pro vyhledávače). A <strong>dvě až tři věty
+            v „ty“ formě</strong> — co obor zkoumá a proč by mohl čtenáře zajímat, bez slibování.</span
+        >
+      </p>
+
+      <h3>Úvod</h3>
+      <p>
+        Co obor zkoumá a jak na to jde. Dva až čtyři odstavce, žádný výčet podoborů (ten patří do Mapy oboru).
+        Pokud se obor přirozeně dotýká jiných, které na webu máme, odkaž je rovnou — třeba
+        <a href="/obory/sociologie">sociologii</a> nebo <a href="/obory/ekonomie">ekonomii</a>, ne jen jménem.
+      </p>
+
+      <h3>Je to pro tebe?</h3>
+      <p>Pomoz čtenáři rozhodnout, jestli má smysl investovat čas — upřímně, oběma směry:</p>
+      <ul>
+        <li><strong>Co za přemýšlení obor odměňuje</strong> a koho naopak bude frustrovat.</li>
+        <li>
+          <strong>Co je dobré umět předem</strong> (např. matematika pro pokročilejší ekonomii) — a co se naopak
+          dá klidně doučit po cestě.
+        </li>
+        <li>
+          <strong>Jak to vypadá v praxi.</strong> Jeden obor vede k mnoha profesím — neexistuje jeden „den
+          psychologa“. Ukaž tu šíři konkrétně: odkaž dva až čtyři díly série <a href="#den-v-praxi">Den v praxi</a
+          > napříč různými profesemi.
+        </li>
+        <li>
+          <strong>Znalosti vs. razítka.</strong> Vědění nemá vrátnici — všechno, co se učí na vysoké škole, se dá
+          nastudovat i mimo ni, do stejné hloubky. Co samostudiem nezískáš, je úřední razítko, a některé
+          <em>činnosti</em> (vést psychoterapii, zastupovat u soudu) na něj zákon váže. Piš to jako fakt o regulaci
+          konkrétních činností, ne jako strop toho, kam se čtenář může dostat. Nálepka „psycholog“ je právní
+          kategorie, ne měřítko znalostí.
+        </li>
+      </ul>
+
+      <h3>Na co si dát pozor</h3>
+      <p>
+        Úskalí samostudia <em>tohohle konkrétního</em> oboru — věci, které za tebe na vysoké škole odfiltruje
+        kurikulum, ale samouk do nich šlápne. Třeba pop-psychologie a replikační krize u psychologie, ideologicky
+        zabarvené školy a politizované zdroje u ekonomie. Konkrétně a bez strašení: u každého úskalí napiš, jak ho
+        poznat, ideálně i jak se mu vyhnout.
+      </p>
+
+      <h3>Mýty</h3>
+      <p>
+        Rozšířené omyly o oboru. Nadpis každé podsekce je <strong>mýtus</strong> (to, čemu lidi věří), text pod ním
+        ho vyvrací. Ne obráceně.
+      </p>
+
+      <h3>Mapa oboru</h3>
+      <p>
+        Jak se obor dělí a co kde leží: podobory, směry, přístupy. <strong>Mapa, ne území</strong> — každou položku
+        shrň jednou větou, ať čtenář vidí tvar oboru, ne aby ho tady nastudoval. Odpírej si nutkání rozepisovat
+        každý podobor do odstavce; od toho jsou doporučené materiály a rozvedený obsah jinde.
+      </p>
+      <p>
+        Když je nějaká část oboru sama o sobě na delší souvislé čtení (dějiny, soupeřící školy myšlení, klíčová
+        teorie), <strong>nepiš ji sem</strong> — udělej z ní samostatný článek na blogu a z mapy na něj jen odkaž.
+        Tři různá místa pro tři různé režimy čtenáře, plus rozhovory pro ten čtvrtý:
+      </p>
+      <ul>
+        <li><strong>rozhoduje se</strong> → stránka oboru,</li>
+        <li><strong>chce studovat</strong> → studijní plán,</li>
+        <li><strong>chce jít do hloubky v myšlenkách oboru</strong> → článek/esej na blogu,</li>
+        <li><strong>chce vědět, jaké to je danou profesi dělat</strong> → rozhovor <a href="#den-v-praxi">Den v praxi</a>.</li>
+      </ul>
+
+      <h3>Jak začít</h3>
+      <p>
+        Konkrétní první krok a posloupnost — ne katalog. Odkaž studijní plán, pokud existuje; pokud ne, dej aspoň
+        pořadí: čím začít, co je nástupní materiál a co až referenční literatura, klidně s hrubým odhadem času.
+        Čtenář odsud má odejít s jednou jasnou akcí.
+      </p>
+
+      <h3>Kam dál</h3>
+      <p>
+        Sousední obory na webu (interní odkazy) a jedna věta, proč tam pokračovat. Žádný seznam všeho — dva tři
+        nejbližší směry.
+      </p>
+
+      <h3>Doporučené materiály</h3>
+      <p>
+        Úplnější referenční seznam. „Jak začít“ říká <em>pořadí</em>, tahle sekce je <em>knihovna</em>. U každé
+        položky jedna poznámka, pro koho je — a u knih i rozsah (počet stran). Rozděl na on-line materiály,
+        literaturu pro laiky a odbornou.
+      </p>
+      <p class="text-sm text-muted">
+        Nejlepší je vyjít z existující stránky, třeba <a href="/obory/psychologie">psychologie</a> — ukazuje celou
+        kostru v praxi.
+      </p>
+    </div>
+
+    <!-- ============ DEN V PRAXI ============ -->
+    <div class="prose mt-16">
+      <h2 id="den-v-praxi" class="flex items-center gap-3">
+        <span class="text-accent"><Icon name="users" size={24} /></span>
+        Rozhovor „Den v praxi“
+      </h2>
+      <p>
+        Série <strong>Den v praxi</strong> ukazuje, jak to doopravdy vypadá nějakou profesi dělat — den po dni, bez
+        příkras a bez náborového PR. Jeden díl = jedna profese. Píše se z rozhovoru se <strong>skutečným
+          praktikem</strong>: vymyšlený „den v praxi“ ztrácí celý smysl, protože jeho jediná hodnota je
+        autentičnost.
+      </p>
+      <p>
+        Děláš něco zajímavého a chceš se podělit? Odpověz na otázky níže (klidně jen na část — lepší tři upřímné
+        odpovědi než dvacet vyhýbavých) a <a href="/kontakt">pošli nám je</a>. Nebo naopak: znáš někoho, koho by
+        stálo za to vyzpovídat? Použij tyhle otázky jako kostru rozhovoru.
+      </p>
+
+      <h3>Kdo jsi</h3>
+      <ul>
+        <li>Jaká je tvoje profese a k jakému oboru patří?</li>
+        <li>Jak ses k ní dostal/a? (studium, samostudium, náhoda, změna kariéry…)</li>
+        <li>Jak dlouho ji děláš?</li>
+        <li>Co je <em>podstata</em> tvé práce, jednou větou?</li>
+      </ul>
+
+      <h3>Jak vypadá běžný den</h3>
+      <ul>
+        <li>Popiš jeden typický pracovní den od rána do večera, klidně po blocích.</li>
+        <li>Co zabere nejvíc času? Překvapilo by to člověka zvenku?</li>
+        <li>Jak moc se dny liší? Existuje vůbec „typický“ den?</li>
+        <li>Kde a s kým pracuješ?</li>
+      </ul>
+
+      <h3>Nástroje a dovednosti</h3>
+      <ul>
+        <li>Co reálně používáš — software, metody, postupy?</li>
+        <li>Které dovednosti používáš denně, a o kterých se hodně mluví při studiu, ale skoro je nepoužiješ?</li>
+        <li>Co ses musel/a doučit až v praxi?</li>
+      </ul>
+
+      <h3>Světlé a stinné stránky</h3>
+      <ul>
+        <li>Co tě na té práci baví nejvíc?</li>
+        <li>Co je naopak nejotravnější nebo nejtěžší?</li>
+        <li>Co tě po nástupu nejvíc překvapilo oproti tvé původní představě?</li>
+        <li>Myslí si lidé o téhle profesi něco, co je ve skutečnosti jinak?</li>
+      </ul>
+
+      <h3>Studium vs. praxe</h3>
+      <ul>
+        <li>Kolik z toho, co denně děláš, ses naučil/a studiem a kolik až prací?</li>
+        <li>Dá se tahle profese dělat i po samostudiu, bez školy? Co ano a co ne?</li>
+        <li>
+          Je nějaké razítko, certifikace nebo praxe, bez které se ve tvé roli neobejdeš? (Ber to jako fakt o dané
+          činnosti, ne jako „bez školy to nejde“.)
+        </li>
+      </ul>
+
+      <h3>Pro koho to je</h3>
+      <ul>
+        <li>Komu bys tuhle práci doporučil/a — jaká povaha, zájmy, silné stránky? A komu spíš ne?</li>
+        <li>Jedna rada pro člověka, který o profesi stojí a začíná od nuly?</li>
+      </ul>
+
+      <h3>Volitelné a citlivější</h3>
+      <p class="text-sm text-muted">Nepovinné — jen pokud jsi ochoten/ochotna sdílet.</p>
+      <ul>
+        <li>Jak je to zhruba s výdělkem? (rozmezí, ne přesné číslo; klidně vynech)</li>
+        <li>Jak jsi na tom s work-life balance, přesčasy, vyhořením?</li>
+        <li>Chceš vystupovat pod jménem, přezdívkou, nebo anonymně?</li>
+      </ul>
+    </div>
+
+    <!-- ============ JAK POSLAT ============ -->
+    <div class="prose mt-16">
+      <h2 id="poslat" class="flex items-center gap-3">
+        <span class="text-accent"><Icon name="megaphone" size={24} /></span>
+        Jak nám text poslat
+      </h2>
+      <p>
+        Až budeš mít text hotový (nebo rozepsaný a chceš probrat směr), <a href="/kontakt">ozvi se nám</a> — nejlíp
+        přes Signal nebo e-mail. Pošli prostě text, klidně v dokumentu nebo v těle zprávy; hlavičku, formátování
+        a zveřejnění na webu vyřešíme my. Programování ani práci s GitHubem po tobě nechceme.
+      </p>
+      <p class="text-sm text-muted">
+        Do budoucna plánujeme jednodušší samoobslužné zadávání, zatím ale stačí zpráva.
+      </p>
+      <p>
+        Jedna věc předem: obsah na Samostuduj vychází pod licencí
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>. Tím, že nám text pošleš ke
+        zveřejnění, souhlasíš, aby ho pod touhle licencí kdokoliv četl, upravoval a sdílel (vždycky s uvedením
+        autorství). Cizí texty, obrázky ani jiná díla bez svolení neposílej.
+      </p>
+    </div>
+
+    <!-- ============ JAK PÍŠEME ============ -->
+    <div class="prose mt-16">
+      <h2 id="jak-piseme" class="flex items-center gap-3">
+        <span class="text-accent"><Icon name="book-open" size={24} /></span>
+        Jak píšeme
+      </h2>
+      <ul>
+        <li><strong>Mluvíme se čtenářem</strong> — „ty“ forma, přátelsky a bez odstupu, ne o oboru z výšky.</li>
+        <li>
+          <strong>Upřímně, ne jako v reklamě.</strong> Píšeme i nevýhody a úskalí. Když něco nevíme nebo je to
+          sporné, řekneme to; nic si nepřikrášlujeme ani nedomýšlíme.
+        </li>
+        <li>
+          <strong>Konkrétně místo obecně.</strong> „Ráno hodina na e-maily, pak dvě konzultace“ řekne víc než
+          „komunikuji s klienty“.
+        </li>
+        <li>
+          <strong>Bez žargonu,</strong> nebo ho aspoň vysvětli. Píšeme pro člověka, který obor teprve zvažuje.
+        </li>
+      </ul>
+      <p>
+        Tón je měkký a zvací. Když ale dojde na tvrdá rozhodnutí (hodnoty, co ano a co ne), řídíme se
+        <a href="/manifest">Manifestem</a> — přečti si ho, ať víš, na čem projekt stojí.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
