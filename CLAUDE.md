@@ -19,6 +19,10 @@ Rule of thumb: **I decide *what* and *how*; a Sonnet sub-agent writes the obviou
 
 `samostuduj.cz` — a Czech self-study education site. The live site is the from-scratch **Astro** rebuild, now at the repo root and deployed on Netlify from `main` (see `netlify.toml`). The original Hugo site has been removed. Content is CC-BY-SA 4.0, site code is CC0.
 
+## Manifest
+
+The project's hard principles live in the Manifest (`src/pages/manifest.astro`, live at [samostuduj.cz/manifest](https://samostuduj.cz/manifest)) — read it before making contested content or product decisions; the site's soft public voice yields to it.
+
 ## Design context (Astro)
 
 The design system lives in the code, not in a separate spec. When doing design work, read these first:

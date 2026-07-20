@@ -20,8 +20,10 @@ const blog = defineCollection({
 });
 
 // Obory — long-form field guides. `icon` maps to a key in Icon.astro.
+// Underscore-prefixed files (e.g. _sablona.md, the authoring template) are
+// excluded from the collection and never published.
 const obory = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/obory" }),
+  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/obory" }),
   schema: z.object({
     title: z.string(),
     summary: z.string(),
