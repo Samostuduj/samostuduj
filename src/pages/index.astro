@@ -18,6 +18,12 @@ const audience = [
   { icon: "compass", title: "Nenašel jsem se", text: "To je v pořádku. Žádné škatulky — jen prostor učit se tak, jak ti to vyhovuje." },
 ] as const;
 
+const funguje = [
+  { icon: "compass", href: "/obory", title: "obory", text: "Rozcestník oborem — kde začít a co číst dál, od úvodu po doporučené materiály." },
+  { icon: "book-open", href: "/plany", title: "studijní plány", text: "Osnova, která tě provede oborem krok za krokem. Jako univerzitní sylabus, ale svobodný a zdarma." },
+  { icon: "feather", href: "/manifest", title: "manifest", text: "Proč to děláme a na čem projekt stojí — principy, ke kterým se hlásíme." },
+] as const;
+
 const dateFmt = new Intl.DateTimeFormat("cs-CZ", { dateStyle: "long" });
 const dateShort = new Intl.DateTimeFormat("cs-CZ", { day: "numeric", month: "long" });
 ---
@@ -118,32 +124,24 @@ const dateShort = new Intl.DateTimeFormat("cs-CZ", { day: "numeric", month: "lon
       zbytečných závazků.
     </p>
 
-    <dl class="mt-8 max-w-2xl border-y border-border">
-      <div class="grid gap-1 border-t border-border py-4 first:border-t-0 sm:grid-cols-[9rem_1fr] sm:gap-6">
-        <dt>
-          <a href="/obory" class="font-semibold text-accent hover:underline">obory</a>
-        </dt>
-        <dd class="text-muted">
-          Rozcestník oborem — kde začít a co číst dál, od úvodu po doporučené materiály.
-        </dd>
-      </div>
-      <div class="grid gap-1 border-t border-border py-4 first:border-t-0 sm:grid-cols-[9rem_1fr] sm:gap-6">
-        <dt>
-          <a href="/plany" class="font-semibold text-accent hover:underline">studijní plány</a>
-        </dt>
-        <dd class="text-muted">
-          Osnova, která tě provede oborem krok za krokem. Jako univerzitní sylabus, ale svobodný a zdarma.
-        </dd>
-      </div>
-      <div class="grid gap-1 border-t border-border py-4 first:border-t-0 sm:grid-cols-[9rem_1fr] sm:gap-6">
-        <dt>
-          <a href="/manifest" class="font-semibold text-accent hover:underline">manifest</a>
-        </dt>
-        <dd class="text-muted">
-          Proč to děláme a na čem projekt stojí — principy, ke kterým se hlásíme.
-        </dd>
-      </div>
-    </dl>
+    <div class="mt-8 grid gap-x-10 gap-y-6 sm:grid-cols-3">
+      {
+        funguje.map((item) => (
+          <a
+            href={item.href}
+            class="group block border-l-2 border-border pl-5 transition hover:border-accent"
+          >
+            <div class="flex items-center gap-2">
+              <Icon name={item.icon} size={18} class="text-accent" />
+              <h3 class="font-semibold transition-colors group-hover:text-accent">
+                {item.title}
+              </h3>
+            </div>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{item.text}</p>
+          </a>
+        ))
+      }
+    </div>
   </section>
 
   <!-- Pro koho -->
