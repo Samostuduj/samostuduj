@@ -161,6 +161,7 @@ body {
 .prose p,
 .prose li { margin: 0.75rem 0; }
 .prose ul { list-style: disc; padding-left: 1.5rem; }
+.prose ol { list-style: decimal; padding-left: 1.5rem; }
 .prose a {
   color: var(--accent);
   text-underline-offset: 3px;
@@ -172,3 +173,82 @@ body {
   color: var(--muted);
   font-style: italic;
 }
+
+/* ---------------------------------------------------------------------------
+   Obory field-guide numbering + ToC rail (prototype, opt-in via `toc: true`).
+   Narrative H2s are auto-numbered via a CSS counter; the appendix after the
+   `<hr>` divider is excluded. The rail sits in the right whitespace on ≥xl
+   screens and tracks the active section (accent numeral + hairline tick).
+--------------------------------------------------------------------------- */
+.obor-numbered { counter-reset: obor-sec; }
+.obor-numbered h2 { counter-increment: obor-sec; }
+.obor-numbered h2::before {
+  content: counter(obor-sec) ". ";
+  color: var(--muted);
+  font-weight: 400;
+}
+/* Appendix sections (after the horizontal rule) keep their heading unnumbered. */
+.obor-numbered hr ~ h2 { counter-increment: none; }
+.obor-numbered hr ~ h2::before { content: none; }
+
+.obor-toc { display: none; }
+
+@media (min-width: 1280px) {
+  /* Anchor the rail to the right of the viewport-centered article, not the
+     wrapping container's edge — the article is `mx-auto` inside `max-w-6xl`,
+     so its right edge sits well inside the container and a container-edge rail
+     would overlap the text. `50%` (of the centered container) is the viewport
+     centre; +24rem clears the half-width of the 48rem article, +2rem is the
+     gap. Width stays ≤ the right margin available at the 1280px breakpoint. */
+  .obor-toc {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: calc(50% + 24rem + 2rem);
+    height: 100%;
+    width: 13rem;
+  }
+  .obor-toc__inner {
+    position: sticky;
+    top: 6rem;
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--border);
+  }
+}
+
+.obor-toc__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+.obor-toc__list { list-style: none; margin: 0; padding: 0; }
+.obor-toc__item { margin: 0; }
+.obor-toc__item a {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  margin-left: -1.25rem;
+  padding-left: 1.15rem;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.obor-toc__item a:hover { color: var(--fg); }
+.obor-toc__num { flex: none; font-variant-numeric: tabular-nums; }
+/* Appendix entry: divider above it, no number column. */
+.obor-toc__item--appendix {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border);
+}
+/* Active section — one ink accent at a time (One-Ink Rule). */
+.obor-toc__item a.is-active {
+  color: var(--fg);
+  border-left-color: var(--accent);
+}
+.obor-toc__item a.is-active .obor-toc__num { color: var(--accent); }

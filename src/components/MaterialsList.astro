@@ -1,0 +1,56 @@
+---
+export interface Material {
+  category: "online" | "kniha" | "odborna";
+  title: string;
+  url?: string | null;
+  author?: string | null;
+  pages?: number | null;
+  lang?: string | null;
+  note?: string | null;
+}
+interface Props {
+  materials: Material[];
+}
+const { materials } = Astro.props;
+
+const groups = [
+  { key: "online", label: "Materiály on-line" },
+  { key: "kniha", label: "Literatura" },
+  { key: "odborna", label: "Odborná" },
+] as const;
+
+const meta = (m: Material) => {
+  const parts: string[] = [];
+  if (m.author) parts.push(m.author);
+  if (m.pages) parts.push(`${m.pages} s.`);
+  return parts.length ? ` (${parts.join(", ")})` : "";
+};
+---
+
+<hr />
+<h2 id="doporucene-materialy">Doporučené materiály</h2>
+{
+  groups.map((g) => {
+    const items = materials.filter((m) => m.category === g.key);
+    if (items.length === 0) return null;
+    return (
+      <>
+        <h3>{g.label}</h3>
+        <ul>
+          {items.map((m) => (
+            <li>
+              {m.lang && m.lang !== "cs" && (
+                <span class="mr-1.5 inline-flex items-center rounded-full border border-border px-1.5 py-0.5 text-[0.6rem] font-medium uppercase tracking-wide text-muted align-middle">
+                  {m.lang}
+                </span>
+              )}
+              {m.url ? <a href={m.url}>{m.title}</a> : <strong>{m.title}</strong>}
+              <span class="text-muted">{meta(m)}</span>
+              {m.note && <> – {m.note}</>}
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+  })
+}

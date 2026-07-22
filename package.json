@@ -5,6 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
+    "check:schema": "node scripts/check-schema-parity.mjs",
+    "prebuild": "node scripts/check-schema-parity.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

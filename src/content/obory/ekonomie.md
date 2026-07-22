@@ -5,7 +5,36 @@ about: "Ekonomie zkoumá, jak lidé a společnosti hospodaří s omezenými zdro
 icon: "trending-up"
 order: 3
 status: "rozpracovano"
+toc: true
 tags: ["Ekonomie"]
+materials:
+  - category: kniha
+    title: "Moderní ekonomie"
+    author: "Hana Lipovská"
+    pages: 256
+    note: "Úvod do ekonomie pro laiky"
+  - category: kniha
+    title: "Kniha ekonomie"
+    author: "kolektiv autorů"
+    pages: 352
+  - category: odborna
+    title: "Ekonomie"
+    author: "Robert Holman"
+    pages: 720
+    note: "Základní kurz ekonomie odpovídající bakalářskému studiu na VŠ"
+  - category: odborna
+    title: "Mikroekonomie: středně pokročilý kurz"
+    author: "Robert Holman"
+    pages: 656
+  - category: odborna
+    title: "Makroekonomie: středně pokročilý kurz"
+    author: "Robert Holman"
+    pages: 480
+  - category: odborna
+    title: "Zásady ekonomie"
+    author: "N. Gregory Mankiw"
+    pages: 764
+    note: "Kompletní kurz ekonomie pro studenty VŠ"
 ---
 
 ## Úvod
@@ -50,19 +79,3 @@ TBD
 ## Makroekonomie
 
 TBD
-
----
-
-## Doporučené materiály
-
-### Literatura
-
-- Moderní ekonomie (Hana Lipovská, 256 s.) – Úvod do ekonomie pro laiky
-- Kniha ekonomie (kolektiv autorů, 352 s.)
-
-#### Odborná
-
-- Ekonomie (Robert Holman, 720 s.) – Základní kurz ekonomie odpovídající bakalářskému studiu na VŠ
-- Mikroekonomie: středně pokročilý kurz (Robert Holman, 656 s.)
-- Makroekonomie: středně pokročilý kurz (Robert Holman, 480 s.)
-- Zásady ekonomie (N. Gregory Mankiw, 764 s.) – Kompletní kurz ekonomie pro studenty VŠ

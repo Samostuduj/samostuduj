@@ -1,21 +1,71 @@
 ---
-title: "Psychologie"
-summary: "Věda zkoumající myšlení, chování a emoce lidí pomocí teorií a výzkumných metod."
-about: "Psychologie zkoumá, jak lidé myslí, cítí a jednají — od vnímání a paměti až po osobnost, motivaci a vztahy. Není to sbírka dojmů, ale věda opřená o experimenty a data. Hodí se ti, ať chceš rozumět lidem kolem sebe, nebo poznat, jak funguje tvoje vlastní hlava."
-icon: "brain"
+title: Psychologie
+summary: >-
+  Věda zkoumající myšlení, chování a emoce lidí pomocí teorií a výzkumných
+  metod.
+icon: brain
 order: 1
-status: "hotovo"
-tags: ["Psychologie"]
+status: hotovo
+toc: true
+about: >-
+  Psychologie zkoumá, jak lidé myslí, cítí a jednají — od vnímání a paměti až po
+  osobnost, motivaci a vztahy. Není to sbírka dojmů, ale věda opřená o
+  experimenty a data. Hodí se ti, ať chceš rozumět lidem kolem sebe, nebo
+  poznat, jak funguje tvoje vlastní hlava.
+tags:
+  - Psychologie
+materials:
+  - category: online
+    title: "CrashCourse Psychology"
+    url: "https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6"
+    lang: en
+    note: "videokurz o 40 dílech; ideální první přehled"
+  - category: online
+    title: "studium-psychologie.cz"
+    url: "https://www.studium-psychologie.cz/"
+    note: "krátké české články o hlavních oborech psychologie"
+  - category: online
+    title: "Psychologický podcast"
+    url: "https://ceskepodcasty.cz/podcast/psychologicky-podcast"
+  - category: kniha
+    title: "Jednoduše: Psychologie"
+    author: "kolektiv autorů"
+    pages: 160
+    note: "rychlý ochutnávkový úvod"
+  - category: kniha
+    title: "Úvod do psychologie"
+    author: "Zdeněk Helus"
+    pages: 320
+    note: "úvodní učebnice"
+  - category: kniha
+    title: "Psychologie, příručka pro studenty"
+    author: "Pavel Říčan"
+    pages: 286
+    note: "úvodní učebnice"
+  - category: odborna
+    title: "Psychologie Atkinsonové a Hilgarda"
+    author: "Nolen-Hoeksema et al."
+    pages: 888
+    note: "rozsáhlý úvod jak do obecné psychologie, tak i speciálních oborů; referenční učebnice"
+  - category: odborna
+    title: "Učebnice obecné psychologie"
+    author: "Alena Plháková"
+    pages: 472
+    note: "vysokoškolská učebnice obecné psychologie"
+  - category: odborna
+    title: "Dějiny psychologie"
+    author: "Morton Hunt"
+    pages: 708
+    note: "historie oboru"
 ---
-
 ## Úvod
 
 **Psychologie** je věda, která se zabývá studiem myšlení, chování a emocí lidí a skupin. Snaží se psychické jevy nejen popsat a vysvětlit, ale taky je předvídat a ovlivňovat. Psychologové k tomu používají různé teorie a výzkumné metody, jako jsou pozorování, experimenty, dotazníky nebo rozhovory. Tím získávají hlubší pochopení lidské psychiky a vytvářejí podklady pro praktické aplikace.
 
 Psychologie se často propojuje s dalšími vědními obory, jako jsou:
 
-- **[ekonomie](/obory/ekonomie)** – studuje rozhodovací procesy a chování na trzích,
-- **[sociologie](/obory/sociologie)** – zabývá se chováním lidí ve společenském kontextu, nebo
+- [**ekonomie**](/obory/ekonomie) – studuje rozhodovací procesy a chování na trzích,
+- [**sociologie**](/obory/sociologie) – zabývá se chováním lidí ve společenském kontextu, nebo
 - **biologie** – zaměřuje se na neurologické a genetické základy chování.
 
 Využiješ ji přitom nejen ve specializovaných odvětvích, jako je HR, marketing, vzdělávání nebo poradenství, ale i v každodenním životě: při zvládání stresu, porozumění sobě i ostatním, řešení konfliktů, v komunikaci obecně — nebo třeba při rozpoznání manipulace a obraně před ní.
@@ -110,33 +160,11 @@ Psychologie stojí a padá s **výzkumem**: teorie sama o sobě nic nedokazuje, 
 Konkrétní posloupnost připravujeme jako studijní plán [Úvod do psychologie](/plany/uvod-do-psychologie); pro vážnější zájemce vzniká i [bakalářský plán](/plany/psychologie-bakalar) inspirovaný vysokoškolskými programy. Než budou hotové, rozjezd vypadá takhle:
 
 1. **Získej přehled.** Projdi videokurz [CrashCourse Psychology](https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6) (40 dílů po ~10 minutách, anglicky) nebo česky krátké články na [studium-psychologie.cz](https://www.studium-psychologie.cz/). Cílem není si všechno zapamatovat, ale zjistit, které části oboru tě přitahují.
-2. **Přečti si první ucelenou knihu.** Například *Psychologie: příručka pro studenty* (Říčan) nebo *Úvod do psychologie* (Helus) — dají ti pojmový základ, na kterém drží všechno další.
-3. **Pořiď si velkou učebnici jako referenci.** *Psychologie Atkinsonové a Hilgarda* je standard, o který se opírají i vysokoškolské kurzy. Nečti ji od začátku do konce — vracej se k ní do hloubky podle toho, co zrovna studuješ.
+1. **Přečti si první ucelenou knihu.** Například *Psychologie: příručka pro studenty* (Říčan) nebo *Úvod do psychologie* (Helus) — dají ti pojmový základ, na kterém drží všechno další.
+1. **Pořiď si velkou učebnici jako referenci.** *Psychologie Atkinsonové a Hilgarda* je standard, o který se opírají i vysokoškolské kurzy. Nečti ji od začátku do konce — vracej se k ní do hloubky podle toho, co zrovna studuješ.
 
 ## Kam dál
 
-- **[Sociologie](/obory/sociologie)** — sociální psychologie s ní sdílí hranici; pokud tě víc než jednotlivec zajímají skupiny, instituce a společenské struktury, pokračuj tudy.
-- **[Filozofie](/obory/filozofie)** — psychologie z ní vzešla a otázky vědomí, mysli a svobodné vůle si s ní vyměňuje dodnes.
-- **[Dějiny psychologie a její hlavní směry](/blog/dejiny-psychologie-a-jeji-smery)** — jak obor vznikl a proč se jeho školy navzájem vymezovaly.
-
----
-
-## Doporučené materiály
-
-### Materiály on-line
-
-- [CrashCourse Psychology](https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6) (anglicky) – videokurz o 40 dílech; ideální první přehled
-- [studium-psychologie.cz](https://www.studium-psychologie.cz/) – krátké české články o hlavních oborech psychologie
-- [Psychologický podcast](https://ceskepodcasty.cz/podcast/psychologicky-podcast) (česky)
-
-### Literatura
-
-- Jednoduše: Psychologie (kolektiv autorů, 160 s.) – rychlý ochutnávkový úvod
-- Úvod do psychologie (Zdeněk Helus, 320 s.) – úvodní učebnice
-- Psychologie, příručka pro studenty (Pavel Říčan, 286 s.) – úvodní učebnice
-
-#### Odborná
-
-- Psychologie Atkinsonové a Hilgarda (Nolen-Hoeksema et al., 888 s.) – rozsáhlý úvod jak do obecné psychologie, tak i speciálních oborů; referenční učebnice
-- Učebnice obecné psychologie (Alena Plháková, 472 s.) – vysokoškolská učebnice obecné psychologie
-- Dějiny psychologie (Morton Hunt, 708 s.) – historie oboru
+- [**Dějiny psychologie a její hlavní směry**](/blog/dejiny-psychologie-a-jeji-smery) — jak obor vznikl a proč se jeho školy navzájem vymezovaly.
+- [**Sociologie**](/obory/sociologie) — sociální psychologie s ní sdílí hranici; pokud tě víc než jednotlivec zajímají skupiny, instituce a společenské struktury, pokračuj tudy.
+- [**Filozofie**](/obory/filozofie) — psychologie z ní vzešla a otázky vědomí, mysli a svobodné vůle si s ní vyměňuje dodnes.

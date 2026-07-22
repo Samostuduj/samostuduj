@@ -101,6 +101,47 @@ export default config({
           multiline: true,
         }),
         tags: tagsField,
+        toc: fields.checkbox({
+          label: "Obsah stránky (číslované nadpisy + boční navigace)",
+          defaultValue: false,
+        }),
+        materials: fields.array(
+          fields.object({
+            category: fields.select({
+              label: "Kategorie",
+              options: [
+                { label: "On-line", value: "online" },
+                { label: "Literatura", value: "kniha" },
+                { label: "Odborná", value: "odborna" },
+              ],
+              defaultValue: "online",
+            }),
+            title: fields.text({
+              label: "Název",
+              validation: { isRequired: true },
+            }),
+            url: fields.url({ label: "Odkaz (nepovinné)" }),
+            author: fields.text({ label: "Autor / vydavatel (nepovinné)" }),
+            pages: fields.integer({ label: "Počet stran (nepovinné)" }),
+            lang: fields.select({
+              label: "Jazyk",
+              options: [
+                { label: "Čeština", value: "cs" },
+                { label: "Angličtina", value: "en" },
+                { label: "Slovenština", value: "sk" },
+                { label: "Němčina", value: "de" },
+                { label: "Francouzština", value: "fr" },
+                { label: "Španělština", value: "es" },
+              ],
+              defaultValue: "cs",
+            }),
+            note: fields.text({ label: "Popis (nepovinné)", multiline: true }),
+          }),
+          {
+            label: "Doporučené materiály",
+            itemLabel: (props) => props.fields.title.value,
+          },
+        ),
         content: fields.markdoc({ label: "Obsah", extension: "md" }),
       },
     }),

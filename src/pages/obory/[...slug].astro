@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
+import MaterialsList from "../../components/MaterialsList.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection("obory");
@@ -12,22 +13,109 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
+const materials = entry.data.materials ?? [];
+
+// H2-only ToC. Narrative sections are numbered 1..N; sections after the
+// markdown `---` divider (the "Doporučené materiály" appendix) are shown
+// unnumbered. `headings` slugs match Astro's auto-generated anchor ids.
+const h2s = headings.filter((h) => h.depth === 2);
+
+// Count H2s that appear before the horizontal-rule divider in the raw body.
+const hr = entry.body.match(/^---\s*$/m);
+const narrativeCount = hr
+  ? (entry.body.slice(0, hr.index).match(/^##\s+/gm) ?? []).length
+  : h2s.length;
+
+const tocItems = h2s.map((h, i) => ({
+  slug: h.slug,
+  text: h.text,
+  num: i < narrativeCount ? i + 1 : null,
+}));
+
+if (materials.length > 0) {
+  tocItems.push({
+    slug: "doporucene-materialy",
+    text: "Doporučené materiály",
+    num: null,
+  });
+}
+
+// Only show the rail when opted in and there are enough sections.
+const showToc = entry.data.toc === true && h2s.length >= 3;
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.summary}>
-  <article class="mx-auto max-w-3xl px-4 py-16 md:px-6">
-    <a href="/obory" class="text-sm text-accent hover:underline">← Zpět na obory</a>
-    <header class="mt-6">
-      <h1 class="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
-        {entry.data.title}
-      </h1>
-      <div class="mt-3">
-        <StatusBadge status={entry.data.status} />
+  <div class="relative mx-auto max-w-6xl px-4 py-16 md:px-6">
+    <article class="mx-auto max-w-3xl">
+      <a href="/obory" class="text-sm text-accent hover:underline">← Zpět na obory</a>
+      <header class="mt-6">
+        <h1 class="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
+          {entry.data.title}
+        </h1>
+        <div class="mt-3">
+          <StatusBadge status={entry.data.status} />
+        </div>
+      </header>
+      <div class:list={["prose mt-8", showToc && "obor-numbered"]}>
+        <Content />
       </div>
-    </header>
-    <div class="prose mt-8">
-      <Content />
-    </div>
-  </article>
+      {materials.length > 0 && (
+        <div class="prose mt-8">
+          <MaterialsList materials={materials} />
+        </div>
+      )}
+    </article>
+
+    {showToc && (
+      <nav class="obor-toc" aria-label="Obsah stránky">
+        <div class="obor-toc__inner">
+          <p class="obor-toc__label">Obsah</p>
+          <ol class="obor-toc__list">
+            {tocItems.map((item) => (
+              <li class:list={["obor-toc__item", item.num === null && "obor-toc__item--appendix"]}>
+                <a href={`#${item.slug}`} data-toc-slug={item.slug}>
+                  {item.num !== null && <span class="obor-toc__num">{item.num}.</span>}
+                  <span class="obor-toc__text">{item.text}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </nav>
+    )}
+  </div>
 </BaseLayout>
+
+{showToc && (
+  <script>
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>(".obor-toc a[data-toc-slug]"));
+    const bySlug = new Map(links.map((a) => [a.dataset.tocSlug, a]));
+    const headings = links
+      .map((a) => document.getElementById(a.dataset.tocSlug!))
+      .filter((el): el is HTMLElement => el !== null);
+
+    let activeSlug: string | null = null;
+    const setActive = (slug: string | null) => {
+      if (slug === activeSlug) return;
+      if (activeSlug) bySlug.get(activeSlug)?.classList.remove("is-active");
+      activeSlug = slug;
+      if (slug) bySlug.get(slug)?.classList.add("is-active");
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // The heading closest to the top of the viewport that is on-screen wins.
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length > 0) {
+          const top = visible.reduce((a, b) =>
+            a.boundingClientRect.top < b.boundingClientRect.top ? a : b
+          );
+          setActive(top.target.id);
+        }
+      },
+      { rootMargin: "0px 0px -70% 0px", threshold: 0 }
+    );
+    headings.forEach((h) => observer.observe(h));
+  </script>
+)}

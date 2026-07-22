@@ -34,6 +34,25 @@ const obory = defineCollection({
     // this. Falls back to `summary` (the short SEO blurb) when absent.
     about: z.string().optional(),
     tags: z.array(z.string()).default([]),
+    // Opt-in numbered ToC rail (prototype). When true, the page renders a
+    // sticky section navigator and numbered narrative headings.
+    toc: z.boolean().default(false),
+    // Structured recommended-materials library. Renders as the unnumbered
+    // "Doporučené materiály" appendix. Optional fields use `.nullish()` so
+    // Keystatic's empty values (null / "") round-trip without validation errors.
+    materials: z
+      .array(
+        z.object({
+          category: z.enum(["online", "kniha", "odborna"]).default("online"),
+          title: z.string(),
+          url: z.string().nullish(),
+          author: z.string().nullish(),
+          pages: z.number().nullish(),
+          lang: z.enum(["cs", "en", "sk", "de", "fr", "es"]).default("cs"),
+          note: z.string().nullish(),
+        }),
+      )
+      .default([]),
   }),
 });
 
