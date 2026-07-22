@@ -2,7 +2,8 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { marked } from "marked";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
+import chromium from "@sparticuz/chromium";
 
 // Build-time flyer pipeline: fetches published A5 flyers (Markdown + optional
 // logo) from the public `nktrjsk/letaky` repo, renders each to print-ready
@@ -351,6 +352,43 @@ function buildManifest(flyers) {
   return { fetchedAt: new Date().toISOString(), flyers: flyerEntries };
 }
 
+// ─── Browser launch ──────────────────────────────────────────────────────
+
+// Locate an installed Chrome/Chromium for local (non-Linux) rendering. Netlify
+// builds on Linux and use the self-contained @sparticuz/chromium binary instead
+// (see launchBrowser), so this list only needs to cover dev machines.
+function localExecutablePath() {
+  const candidates = [
+    process.env.PUPPETEER_EXECUTABLE_PATH,
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/Applications/Chromium.app/Contents/MacOS/Chromium",
+    "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",
+  ].filter(Boolean);
+  return candidates.find((p) => existsSync(p)) ?? null;
+}
+
+// puppeteer-core ships no browser of its own. On Netlify's Linux build image,
+// puppeteer's old bundled Chrome failed to launch (missing system libraries),
+// so we drive the self-contained serverless Chromium from @sparticuz/chromium.
+// Locally we point at an installed Chrome/Chromium instead — that binary isn't
+// available (or runnable) off-Linux.
+async function launchBrowser() {
+  if (process.platform === "linux") {
+    return puppeteer.launch({
+      args: chromium.args,
+      executablePath: await chromium.executablePath(),
+      headless: true,
+    });
+  }
+  const executablePath = localExecutablePath();
+  if (!executablePath) {
+    throw new Error(
+      "no local Chrome/Chromium found — install Google Chrome or set PUPPETEER_EXECUTABLE_PATH",
+    );
+  }
+  return puppeteer.launch({ executablePath, headless: true });
+}
+
 // ─── Orchestration ───────────────────────────────────────────────────────
 
 async function run(logger) {
@@ -373,7 +411,7 @@ async function run(logger) {
   if (toRender.length > 0) {
     let browser;
     try {
-      browser = await puppeteer.launch();
+      browser = await launchBrowser();
     } catch (err) {
       throw new Error(
         `letaky: Puppeteer failed to launch (${err instanceof Error ? err.message : err})`,
