@@ -46,6 +46,7 @@ const isGroupActive = (children?: { href: string }[]) =>
 ---
 
 <header
+  data-site-header
   class="sticky top-0 z-50 border-b border-border bg-bg/85 backdrop-blur-sm"
 >
   <div
@@ -314,5 +315,20 @@ const isGroupActive = (children?: { href: string }[]) =>
       else scrim.setAttribute("hidden", "");
     });
     scrim.addEventListener("click", () => menu.removeAttribute("open"));
+  }
+
+  // Track the sticky header's real height so anchor-scroll (scroll-padding-top) always clears it.
+  const header = document.querySelector(
+    "[data-site-header]",
+  ) as HTMLElement | null;
+  if (header) {
+    const updateNavHeight = () => {
+      document.documentElement.style.setProperty(
+        "--nav-h",
+        `${header.offsetHeight}px`,
+      );
+    };
+    updateNavHeight();
+    new ResizeObserver(updateNavHeight).observe(header);
   }
 </script>

@@ -55,6 +55,8 @@
      hand-drawn collateral (docs/branding/samostuduj_logo_CZ.pdf, H245°). */
   --accent: #575196;
   --accent-contrast: #ffffff;
+  /* Fallback for pre-JS paint; Header.astro's ResizeObserver overwrites this with the real measured height. */
+  --nav-h: 3.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -117,6 +119,7 @@ html {
   font-family: var(--font-mono);
   color-scheme: light dark;
   scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-h);
 }
 
 /* Honour reduced-motion: no smooth scroll, near-instant transitions. */
