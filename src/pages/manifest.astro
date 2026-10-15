@@ -1,48 +1,306 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+const preamble = [
+  "Tenhle manifest obsahuje hodnoty, na kterých samostuduj stojí.",
+  "Jsou zvolené tak, aby podporovaly svobodu studentů a omezovaly moc Samostuduj samotného.",
+  "Moderní historie je protkána rugpully a jinými, zavrženíhodnými praktikami.",
+  "A jelikož moc korumpuje, Samostuduj se jí předem vzdává.",
+];
+
+// term + desc verbatim. `mode` picks a ransom-note treatment for the term.
 const principles = [
   {
     term: "Voluntarismus",
     desc: "Vzájemné interakce by měly být dobrovolné, nikdo by neměl být k ničemu nucen proti jeho vůli, aniž by se k tomu předem nezavázal.",
+    mode: "mark",
   },
   {
     term: "Absence duševního vlastnictví",
     desc: "Duševní vlastnictví vnímáme jako neslučitelné se svobodou, a proto ho nepodporujeme. Všechny naše materiály jsou volnými díly, stejně tak i naše codebase. To ale neznamená, že nebudeme respektovat duševní vlastnictví ostatních.",
+    mode: "invert",
   },
   {
     term: "Preference svobodných peněz",
     desc: "Vždy preferujeme svobodné peníze (Bitcoin, Monero, Z-Cash atd.) před těmi nucenými (české koruny, dolary).",
+    mode: "outline",
   },
   {
     term: "Zachováváme soukromí",
     desc: "Používáme jednoduché technologie, které respektují soukromí. Nepotřebujeme žádné blištivé aplikace, které slouží jako honeypot. Sbíráme minimum dat, která jsou potřeba pro fungování.",
+    mode: "mark",
   },
   {
     term: "Decentralizace",
     desc: `Neexistuje jediné „správné” Samostuduj, každý si může založit svou vlastní odnož, pokud není s momentální cestou spokojený.`,
+    mode: "invert",
   },
   {
     term: "Spolupráce",
     desc: "(Skoro) nikdo nedokáže vybudovat něco velkého sám, spolupráce je tedy klíčová. Navíc zachovává diverzitu, a tím podporuje inovace.",
+    mode: "outline",
   },
 ];
+
+const pad = (i: number) => String(i + 1).padStart(2, "0");
 ---
 
 <BaseLayout title="Manifest" description="Principy a hodnoty, na kterých stojí projekt Samostuduj.">
-  <section class="mx-auto max-w-3xl px-4 py-16 md:px-6">
-    <h1 class="text-3xl font-bold tracking-tight md:text-4xl">Manifest</h1>
-    <p class="mt-3 text-muted">V Samostuduj zastáváme následující principy:</p>
+  <section class="zine">
+    <div class="grain" aria-hidden="true"></div>
 
-    <div class="mt-10 space-y-4">
-      {
-        principles.map((p) => (
-          <div class="rounded-xl border border-border bg-surface p-5">
-            <p class="font-semibold text-fg">{p.term}</p>
-            <p class="mt-1 text-sm text-muted">{p.desc}</p>
-          </div>
-        ))
-      }
+    <div class="zine-wrap">
+      {/* ---------------- masthead ---------------- */}
+      <header class="mast">
+        <h1 class="mast-title" data-text="MANIFEST">MANIFEST</h1>
+        <p class="mast-meta">č. 1.0 &nbsp;·&nbsp; volné dílo &nbsp;·&nbsp; CC BY-SA 4.0 &nbsp;·&nbsp; samostuduj</p>
+      </header>
+
+      {/* ---------------- preamble ---------------- */}
+      <div class="lede">
+        <p>{preamble.join(" ")}</p>
+      </div>
+
+      {/* ---------------- principles ---------------- */}
+      <ol class="items">
+        {
+          principles.map((p, i) => (
+            <li class="item" data-mode={p.mode}>
+              <span class="item-no" aria-hidden="true">
+                č.{pad(i)}
+              </span>
+              <h2 class="item-term">
+                <span class="tw">{p.term}</span>
+              </h2>
+              <p class="item-desc">{p.desc}</p>
+            </li>
+          ))
+        }
+      </ol>
+
+      <p class="colophon">
+        — rozmnožuj, přepisuj, rozdávej. nikdo se tě nebude ptát na svolení. —
+      </p>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  /* ====================================================================
+     SAMIZDAT ZINE — house rules (One-Ink, Paper-Doesn't-Float) deliberately
+     off on this page only. Warm photocopied paper, high-contrast toner,
+     oxide-red rubber stamps, indigo highlighter, torn/taped patches, skew.
+  ==================================================================== */
+  .zine {
+    --paper: #ece5d6;
+    --toner: #16120b;
+    --stamp: #a3311f;
+    --hl: var(--accent);
+    --grain-blend: multiply;
+    --grain-opacity: 0.5;
+
+    position: relative;
+    width: 100%;
+    background: var(--paper);
+    color: var(--toner);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  :global(.dark) .zine {
+    --paper: #13110b;
+    --toner: #ece4d2;
+    --stamp: #d85c45;
+    --grain-blend: screen;
+    --grain-opacity: 0.4;
+  }
+
+  /* photocopy grain, laid over everything in the section */
+  .grain {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    mix-blend-mode: var(--grain-blend);
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .zine-wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 4rem 1.25rem 7rem;
+  }
+  @media (min-width: 768px) {
+    .zine-wrap {
+      padding: 5.5rem 2rem 9rem;
+    }
+  }
+
+  /* ------------------------ masthead ------------------------ */
+  .mast {
+    position: relative;
+    margin-bottom: 3.5rem;
+  }
+  .mast-title {
+    position: relative;
+    display: inline-block;
+    transform: rotate(-1.4deg);
+    background: var(--toner);
+    color: var(--paper);
+    padding: 0.1em 0.35em 0.18em;
+    font-weight: 700;
+    font-size: clamp(3.5rem, 15vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    /* torn bottom edge */
+    clip-path: polygon(
+      0 0, 100% 0, 100% 88%, 96% 100%, 90% 90%, 83% 100%, 76% 91%,
+      68% 100%, 60% 90%, 52% 100%, 45% 91%, 37% 100%, 29% 90%,
+      21% 100%, 13% 91%, 6% 100%, 0 90%
+    );
+  }
+  /* toner ghost — the "photocopied twice" offset double */
+  .mast-title::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 6px;
+    top: 5px;
+    z-index: -1;
+    color: var(--toner);
+    opacity: 0.28;
+    -webkit-text-stroke: 0;
+  }
+  .mast-meta {
+    margin-top: 1.1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  /* ------------------------ preamble ------------------------ */
+  .lede {
+    position: relative;
+    max-width: 40ch;
+    margin: 0 0 4rem;
+    transform: rotate(-0.5deg);
+    background: color-mix(in oklab, var(--paper) 70%, #fff 30%);
+    padding: 1.5rem 1.4rem;
+    box-shadow: 3px 4px 0 rgb(0 0 0 / 0.18);
+  }
+  :global(.dark) .lede {
+    background: color-mix(in oklab, var(--paper) 60%, #000 40%);
+    box-shadow: 3px 4px 0 rgb(0 0 0 / 0.5);
+  }
+  /* strip of "tape" holding the note down */
+  .lede::before {
+    content: "";
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    width: 6.5rem;
+    height: 1.6rem;
+    transform: translateX(-50%) rotate(-3deg);
+    background: color-mix(in oklab, var(--hl) 22%, transparent);
+    border-left: 1px dashed rgb(0 0 0 / 0.15);
+    border-right: 1px dashed rgb(0 0 0 / 0.15);
+  }
+  .lede p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  .lede p + p {
+    margin-top: 0.85rem;
+  }
+
+  /* ------------------------ principles ------------------------ */
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 2.75rem;
+  }
+  .item {
+    position: relative;
+    padding: 1.25rem 1.25rem 1.4rem;
+  }
+  .item:nth-child(odd) {
+    transform: rotate(-0.55deg);
+  }
+  .item:nth-child(even) {
+    transform: rotate(0.5deg);
+  }
+  .item::after {
+    /* heavy hand-inked frame, eaten away by a grain mask so it reads as a
+       worn photocopied line rather than a crisp CSS border */
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 3px solid var(--toner);
+    pointer-events: none;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='2'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 -0.4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='2'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 -0.4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+    -webkit-mask-size: 200px;
+    mask-size: 200px;
+  }
+  .item-no {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stamp);
+    margin-bottom: 0.35rem;
+  }
+  .item-term {
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    font-size: clamp(2rem, 7vw, 4.25rem);
+    text-transform: uppercase;
+  }
+
+  /* ransom-note treatments */
+  [data-mode="mark"] .tw {
+    background: linear-gradient(
+      var(--hl),
+      var(--hl)
+    ) no-repeat;
+    background-size: 100% 0.42em;
+    background-position: 0 78%;
+    padding: 0 0.05em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  [data-mode="invert"] .tw {
+    background: var(--toner);
+    color: var(--paper);
+    padding: 0.02em 0.12em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  [data-mode="outline"] .tw {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--toner);
+  }
+  :global(.dark) [data-mode="outline"] .tw {
+    -webkit-text-stroke-color: var(--toner);
+  }
+
+  .item-desc {
+    margin-top: 1rem;
+    max-width: 54ch;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .colophon {
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    opacity: 0.75;
+    transform: rotate(-0.4deg);
+  }
+</style>
