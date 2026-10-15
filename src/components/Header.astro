@@ -18,7 +18,7 @@ const nav = [
       { label: "Filozofie", href: "/obory/filozofie" },
     ],
   },
-  { label: "Studijní plány", href: "/plany" },
+  { label: "Kurzy", href: "/kurzy" },
   { label: "Blog", href: "/blog" },
   { label: "Letáky", href: "/letaky" },
   {
@@ -176,14 +176,14 @@ const isGroupActive = (children?: { href: string }[]) =>
             Obory
           </a>
           <a
-            href="/plany"
-            aria-current={isActive("/plany") ? "page" : undefined}
+            href="/kurzy"
+            aria-current={isActive("/kurzy") ? "page" : undefined}
             class:list={[
               "rounded-lg border px-3 py-3 text-center font-semibold hover:border-accent hover:text-accent",
-              isActive("/plany") ? "border-accent text-accent" : "border-border",
+              isActive("/kurzy") ? "border-accent text-accent" : "border-border",
             ]}
           >
-            Studijní plány
+            Kurzy
           </a>
         </div>
 

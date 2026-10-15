@@ -4,13 +4,13 @@ import type { APIRoute } from "astro";
 // Kept short on purpose; the full machine-readable index lives at /llms.txt.
 const body = `# Samostuduj
 
-> Vzdělávej se důkladně jako na vysoké škole — ale po svém. Materiály, studijní plány a komunita pro samouky.
+> Vzdělávej se důkladně jako na vysoké škole — ale po svém. Materiály, kurzy a komunita pro samouky.
 
-Samostuduj.cz je český web pro samouky: popisuje jednotlivé obory, nabízí studijní plány inspirované vysokoškolskými programy a vede blog o samostudiu jako legitimní cestě vzdělávání.
+Samostuduj.cz je český web pro samouky: popisuje jednotlivé obory, nabízí kurzy inspirované vysokoškolskými programy a vede blog o samostudiu jako legitimní cestě vzdělávání.
 
 ## Rozcestník
 - Obory: https://samostuduj.cz/obory
-- Studijní plány: https://samostuduj.cz/plany
+- Kurzy: https://samostuduj.cz/kurzy
 - Blog: https://samostuduj.cz/blog
 - O projektu: https://samostuduj.cz/o-projektu
 - Manifest: https://samostuduj.cz/manifest

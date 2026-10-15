@@ -1,14 +1,14 @@
 ---
-title: "Psychologie — bakalářský plán"
+title: "Psychologie — bakalářský kurz"
 obor: "Psychologie"
 level: "bakalář"
 order: 2
 status: "rozpracovano"
-summary: "Studijní plán inspirovaný bakalářskými programy vysokých škol (např. MUNI) pro samostatné studium psychologie."
+summary: "Kurz inspirovaný bakalářskými programy vysokých škol (např. MUNI) pro samostatné studium psychologie."
 draft: false
 ---
 
-Tento studijní plán je inspirovaný bakalářskými programy na vysokých školách, jako je např. MUNI.
+Tento kurz je inspirovaný bakalářskými programy na vysokých školách, jako je např. MUNI.
 
 - Základní obory
   - Dějiny psychologie

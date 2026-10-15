@@ -49,7 +49,7 @@ export default config({
   ui: {
     brand: { name: "Samostuduj" },
     navigation: {
-      Obsah: ["blog", "obory", "plany", "aktuality"],
+      Obsah: ["blog", "obory", "kurzy", "aktuality"],
     },
   },
   collections: {
@@ -146,10 +146,10 @@ export default config({
       },
     }),
 
-    // Studijní plány — kurikula.
-    plany: collection({
-      label: "Studijní plány",
-      path: "src/content/plany/*",
+    // Kurzy — kurikula.
+    kurzy: collection({
+      label: "Kurzy",
+      path: "src/content/kurzy/*",
       slugField: "title",
       format: { contentField: "content" },
       schema: {
@@ -197,7 +197,7 @@ export default config({
           ],
           defaultValue: "novinka",
         }),
-        link: fields.text({ label: "Odkaz (nepovinné, např. /plany)" }),
+        link: fields.text({ label: "Odkaz (nepovinné, např. /kurzy)" }),
         placement: fields.select({
           label: "Umístění",
           options: [

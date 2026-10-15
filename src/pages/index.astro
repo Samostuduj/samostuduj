@@ -20,7 +20,7 @@ const audience = [
 
 const funguje = [
   { icon: "compass", href: "/obory", title: "obory", text: "Rozcestník oborem — kde začít a co číst dál, od úvodu po doporučené materiály." },
-  { icon: "book-open", href: "/plany", title: "studijní plány", text: "Osnova, která tě provede oborem krok za krokem. Jako univerzitní sylabus, ale svobodný a zdarma." },
+  { icon: "book-open", href: "/kurzy", title: "kurzy", text: "Osnova, která tě provede oborem krok za krokem. Jako univerzitní sylabus, ale svobodný a zdarma." },
   { icon: "feather", href: "/manifest", title: "manifest", text: "Proč to děláme a na čem projekt stojí — principy, ke kterým se hlásíme." },
 ] as const;
 
@@ -44,10 +44,10 @@ const dateShort = new Intl.DateTimeFormat("cs-CZ", { day: "numeric", month: "lon
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
           <a
-            href="/plany"
+            href="/kurzy"
             class="rounded-lg bg-accent px-5 py-3 font-medium text-accent-contrast transition hover:opacity-90"
           >
-            Prozkoumat studijní plány
+            Prozkoumat kurzy
           </a>
           <a
             href="/blog"
@@ -118,7 +118,7 @@ const dateShort = new Intl.DateTimeFormat("cs-CZ", { day: "numeric", month: "lon
     <h2 class="text-2xl font-bold">Jak to funguje</h2>
     <p class="mt-4 max-w-2xl leading-relaxed text-muted">
       Vysokou školu nedělá budova ani diplom — dělá ji obsah: v jakém pořadí
-      věci procházíš a z čeho se učíš. Obojí tu najdeš. Studijní plány tě
+      věci procházíš a z čeho se učíš. Obojí tu najdeš. Kurzy tě
       provedou oborem od úvodu po magisterskou úroveň, z kvalitních veřejně
       dostupných zdrojů — zadarmo, vlastním tempem a bez žádných
       zbytečných závazků.
@@ -193,14 +193,14 @@ const dateShort = new Intl.DateTimeFormat("cs-CZ", { day: "numeric", month: "lon
       <div>
         <h2 class="text-2xl font-bold">Kde začít?</h2>
         <p class="mt-2 max-w-xl text-muted">
-          Vyber si studijní plán a projdi obor krok za krokem — vlastním tempem a zadarmo.
+          Vyber si kurz a projdi obor krok za krokem — vlastním tempem a zadarmo.
         </p>
       </div>
       <a
-        href="/plany"
+        href="/kurzy"
         class="mt-6 inline-block shrink-0 rounded-lg bg-accent px-5 py-3 font-medium text-accent-contrast transition hover:opacity-90 md:mt-0"
       >
-        Prozkoumat studijní plány
+        Prozkoumat kurzy
       </a>
     </div>
   </section>

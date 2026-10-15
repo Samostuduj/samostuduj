@@ -1,5 +1,5 @@
 ---
-title: "Ekonomie — bakalářský plán"
+title: "Ekonomie — bakalářský kurz"
 obor: "Ekonomie"
 level: "bakalář"
 order: 2
@@ -10,4 +10,4 @@ draft: false
 
 ## Připravujeme
 
-Tento studijní plán teprve vzniká. Chceš pomoct s jeho přípravou? [Chci pomoct](/chci-pomoct).
+Tento kurz teprve vzniká. Chceš pomoct s jeho přípravou? [Chci pomoct](/chci-pomoct).

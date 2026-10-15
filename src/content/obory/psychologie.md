@@ -157,7 +157,7 @@ Psychologie stojí a padá s **výzkumem**: teorie sama o sobě nic nedokazuje, 
 
 ## Jak začít
 
-Konkrétní posloupnost připravujeme jako studijní plán [Úvod do psychologie](/plany/uvod-do-psychologie); pro vážnější zájemce vzniká i [bakalářský plán](/plany/psychologie-bakalar) inspirovaný vysokoškolskými programy. Než budou hotové, rozjezd vypadá takhle:
+Konkrétní posloupnost připravujeme jako kurz [Úvod do psychologie](/kurzy/uvod-do-psychologie); pro vážnější zájemce vzniká i [bakalářský kurz](/kurzy/psychologie-bakalar) inspirovaný vysokoškolskými programy. Než budou hotové, rozjezd vypadá takhle:
 
 1. **Získej přehled.** Projdi videokurz [CrashCourse Psychology](https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6) (40 dílů po ~10 minutách, anglicky) nebo česky krátké články na [studium-psychologie.cz](https://www.studium-psychologie.cz/). Cílem není si všechno zapamatovat, ale zjistit, které části oboru tě přitahují.
 1. **Přečti si první ucelenou knihu.** Například *Psychologie: příručka pro studenty* (Říčan) nebo *Úvod do psychologie* (Helus) — dají ti pojmový základ, na kterém drží všechno další.

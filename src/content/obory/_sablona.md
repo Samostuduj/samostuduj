@@ -22,7 +22,7 @@ tags: []
      – Na co si dát pozor ... úskalí samostudia oboru; jak je poznat a obejít
      – Mýty .......... nadpis = mýtus, text = vyvrácení
      – Mapa oboru .... MAPA, NE ÚZEMÍ: jedna věta na položku; dlouhé věci → /blog
-     – Jak začít ..... jeden jasný první krok + pořadí; odkaz na /plany
+     – Jak začít ..... jeden jasný první krok + pořadí; odkaz na /kurzy
      – Kam dál ....... 2–3 nejbližší obory, jedna věta proč
      – Doporučené materiály ... knihovna: on-line / literatura / odborná
      Hotový vzor: src/content/obory/psychologie.md -->

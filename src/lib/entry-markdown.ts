@@ -3,7 +3,8 @@ import type { CollectionEntry } from "astro:content";
 type MdEntry =
   | CollectionEntry<"blog">
   | CollectionEntry<"obory">
-  | CollectionEntry<"plany">;
+  | CollectionEntry<"kurzy">
+  | CollectionEntry<"lekce">;
 
 const SITE = "https://samostuduj.cz";
 

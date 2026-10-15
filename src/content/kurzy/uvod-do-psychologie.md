@@ -10,4 +10,4 @@ draft: false
 
 ## Připravujeme
 
-Tento studijní plán teprve vzniká. Chceš pomoct s jeho přípravou? [Chci pomoct](/chci-pomoct).
+Tento kurz teprve vzniká. Chceš pomoct s jeho přípravou? [Chci pomoct](/chci-pomoct).

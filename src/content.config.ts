@@ -56,14 +56,31 @@ const obory = defineCollection({
   }),
 });
 
-// Studijní plány — curriculum roadmaps, grouped by obor on the index.
-const plany = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "./src/content/plany" }),
+// Kurzy — curriculum roadmaps, grouped by obor on the index.
+const kurzy = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/kurzy" }),
   schema: z.object({
     title: z.string(),
     obor: z.string().optional(),
     level: z.enum(["úvod", "bakalář", "magistr"]).optional(),
     order: z.number().default(99),
+    summary: z.string().optional(),
+    status,
+    draft: z.boolean().default(false),
+  }),
+});
+
+// Lekce — individual lesson pages within a kurz. Nested one level: the file
+// path's first segment is the parent kurz's slug (src/content/lekce/<kurz>/<lekce>.md),
+// which gives entries an id like "uvod-do-chemie/mapa-oboru" — directly usable
+// as the /kurzy/<kurz>/<lekce> route. A kurz with no lekce falls back to
+// rendering its own body as a single page (see src/pages/kurzy/[kurz]/index.astro).
+const lekce = defineCollection({
+  loader: glob({ pattern: "*/*.md", base: "./src/content/lekce" }),
+  schema: z.object({
+    title: z.string(),
+    order: z.number().default(99),
+    // Short explanation shown next to the lesson link on the kurz overview page.
     summary: z.string().optional(),
     status,
     draft: z.boolean().default(false),
@@ -81,7 +98,7 @@ const aktuality = defineCollection({
     type: z
       .enum(["novy-obsah", "hledame", "novinka", "udalost"])
       .default("novinka"),
-    // Optional CTA target (e.g. /plany/uvod-do-psychologie).
+    // Optional CTA target (e.g. /kurzy/uvod-do-psychologie).
     link: z.string().optional(),
     // Prominence ladder. strip = site-wide strip + homepage band + archive;
     // hero = homepage band + archive; archive = /aktuality only (default).
@@ -94,4 +111,4 @@ const aktuality = defineCollection({
   }),
 });
 
-export const collections = { blog, obory, plany, aktuality };
+export const collections = { blog, obory, kurzy, lekce, aktuality };
